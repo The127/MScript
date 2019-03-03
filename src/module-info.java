@@ -7,4 +7,5 @@
  *
  */
 module mscript {
+	requires org.antlr.antlr4.runtime;
 }
