@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/The127/MScript.svg?branch=master)](https://travis-ci.com/The127/MScript)
+[![codecov](https://codecov.io/gh/The127/MScript/branch/master/graph/badge.svg)](https://codecov.io/gh/The127/MScript)
 
 MScript
 =======
