@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.com/The127/MScript.svg?branch=master)](https://travis-ci.com/The127/MScript)
 [![codecov](https://codecov.io/gh/The127/MScript/branch/master/graph/badge.svg)](https://codecov.io/gh/The127/MScript)
+[![codebeat badge](https://codebeat.co/badges/e032e201-9cb4-4c9d-91b9-07fbc0b0bab9)](https://codebeat.co/projects/github-com-the127-mscript-master)
 
 MScript
 =======
