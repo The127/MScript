@@ -41,6 +41,6 @@ fn calc(angle) {
 ```
 Note that you still need to place your physical items accordingly.
 
-Examples can be found under the (examples folder)[https://github.com/The127/MScript/tree/master/examples].
+Examples can be found under the [examples folder](https://github.com/The127/MScript/tree/master/examples).
 
 A guide for the language can be found [here](https://docs.google.com/document/d/1M8d57R9WbtqjTNA2tzuSM31L_ZZOvkGa2NnwqqJ3Cwk/edit?usp=sharing).
