@@ -84,7 +84,7 @@ public class ScriptModel implements IScriptContext {
 		
 		var sb = new StringBuilder();
 		
-		//TODO
+		//TODO nulls
 		
 		sb.append(mainFunction.compile(null));
 		for(var f : functions) {
