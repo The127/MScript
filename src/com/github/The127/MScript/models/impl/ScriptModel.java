@@ -64,21 +64,13 @@ public class ScriptModel implements IScriptContext {
 	}
 	
 	@Override
-	public int getFunctionLine(String functionName, FileContext ctx) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public String getLocal(String localName, FileContext ctx) {
-		// TODO Auto-generated method stub
-		return null;
+		return currentCompileFunction.getLocal(localName, ctx);
 	}
 
 	@Override
 	public String getParam(String paramName, FileContext ctx) {
-		// TODO Auto-generated method stub
-		return null;
+		return currentCompileFunction.getParam(paramName, ctx);
 	}
 	
 	/**
@@ -99,6 +91,9 @@ public class ScriptModel implements IScriptContext {
 			currentCompileFunction = f;
 			sb.append(f.compile(null));
 		}
+		
+		//TODO:
+		// find intermediate labels and replace them in the source 
 		
 		// remove any empty lines that might be inside the compiled file to reduce the line count
 		return sb.toString().replaceAll("(?m)^[ \t]*\r?\n", "");

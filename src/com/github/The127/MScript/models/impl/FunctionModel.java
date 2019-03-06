@@ -5,9 +5,10 @@
 package com.github.The127.MScript.models.impl;
 
 import com.github.The127.MScript.FileContext;
+import com.github.The127.MScript.models.IFunctionContext;
 import com.github.The127.MScript.models.IScriptContext;
 
-public class FunctionModel extends AbstractModel {
+public class FunctionModel extends AbstractModel implements IFunctionContext {
 
 	private final String name;
 	
@@ -18,6 +19,18 @@ public class FunctionModel extends AbstractModel {
 	
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public String getLocal(String localName, FileContext ctx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getParam(String paramName, FileContext ctx) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
