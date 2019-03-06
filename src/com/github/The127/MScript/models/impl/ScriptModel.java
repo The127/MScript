@@ -96,9 +96,11 @@ public class ScriptModel implements IScriptContext {
 		
 		sb.append(mainFunction.compile(null));
 		for(var f : functions) {
+			currentCompileFunction = f;
 			sb.append(f.compile(null));
 		}
 		
-		return sb.toString();
+		// remove any empty lines that might be inside the compiled file to reduce the line count
+		return sb.toString().replaceAll("(?m)^[ \t]*\r?\n", "");
 	}
 }

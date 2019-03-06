@@ -5,10 +5,9 @@
 package com.github.The127.MScript.models.impl;
 
 import com.github.The127.MScript.FileContext;
-import com.github.The127.MScript.models.ICompilableModel;
 import com.github.The127.MScript.models.IScriptContext;
 
-public class FunctionModel extends AbstractModel implements ICompilableModel {
+public class FunctionModel extends AbstractModel {
 
 	private final String name;
 	
