@@ -11,8 +11,8 @@ public class BasicReadStatementModel extends ReadStatementModel {
 
 	@Override
 	public String compile(IScriptContext ctx) {
-		return "l " 
-				+ ctx.resolveRegister(getVariable(), getFileContext()) 
+		return "l" 
+				+ " " + ctx.resolveRegister(getVariable(), getFileContext()) 
 				+ " " + ctx.resolveAlias(getDevice(), getFileContext())
 				+ " " + getTarget();
 	}
