@@ -62,15 +62,10 @@ public class ScriptModel implements IScriptContext {
 			else
 				functions.add(function);
 	}
-	
-	@Override
-	public String getLocal(String localName, FileContext ctx) {
-		return currentCompileFunction.getLocal(localName, ctx);
-	}
 
 	@Override
-	public String getParam(String paramName, FileContext ctx) {
-		return currentCompileFunction.getParam(paramName, ctx);
+	public String resolveRegister(String variableName, FileContext ctx) {
+		return currentCompileFunction.resolveRegister(variableName, ctx);
 	}
 	
 	/**

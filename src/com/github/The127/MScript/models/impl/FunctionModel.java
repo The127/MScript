@@ -28,8 +28,7 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 	private int paramCount = 0;
 	private Map<String, String> params = new HashMap<>();
 
-	//TODO
-	private List<Object> statements = new LinkedList<>();
+	private List<StatementModel> statements = new LinkedList<>();
 	
 	public FunctionModel(FileContext ctx, String name) {
 		super(ctx);
@@ -60,31 +59,28 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 		return locals.containsKey(name) || params.containsKey(name);
 	}
 
-	@Override
-	public String getLocal(String localName, FileContext ctx) {
-		if(!locals.containsKey(localName))
-			throw new MScriptCompilationException("Unkown local variable '" + localName + "'.", ctx);
-		return locals.get(localName);
-	}
-
-	@Override
-	public String getParam(String paramName, FileContext ctx) {
-		if(!params.containsKey(paramName))
-			throw new MScriptCompilationException("Uknown function parameter '" + paramName + "'", ctx);
-		return params.get(paramName);
-	}
-
-	public void addStatement(Object statement) {
-		//TODO
+	public void addStatement(StatementModel statement) {
 		statements.add(statement);
+	}
+
+	@Override
+	public String resolveRegister(String variableName, FileContext ctx) {
+		if(!params.containsKey(variableName))
+			if(!locals.containsKey(variableName))
+				throw new MScriptCompilationException("Unkown variable '" + variableName + "'", ctx);
+			else
+				return locals.get(variableName);
+		else
+			return params.get(variableName);
 	}
 	
 	@Override
 	public String compile(IScriptContext ctx) {
 		// first add intermediary label
-		var sb = new StringBuilder("{function::" + this.getName() + "}");
+		var sb = new StringBuilder("{source::function::" + this.getName() + "}");
 		
-		//TODO
+		for(var statement : statements)
+			sb.append(statement.compile(ctx));
 		
 		return sb.toString();
 	}
