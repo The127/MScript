@@ -31,7 +31,8 @@ public class WriteStatementModel extends StatementModel {
 		return "s"
 				+ " " + ctx.resolveAlias(getDevice(), getFileContext())
 				+ " " + getTarget()
-				+ " " + ctx.resolveRegister(getVariable(), getFileContext()) ;
+				+ " " + ctx.resolveRegister(getVariable(), getFileContext()) 
+				+ System.lineSeparator();
 	}
 
 }
