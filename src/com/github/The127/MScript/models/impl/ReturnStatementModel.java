@@ -22,7 +22,7 @@ public class ReturnStatementModel extends StatementModel  {
 		sb.append("pop r14").append(System.lineSeparator());//see function model (push ra)
 		// set return value either to the actual value
 		if(expression != null)
-			sb.append(expression.toString());
+			sb.append(expression.compile(ctx));
 		// or to 1/true on default
 		else
 			sb.append("push 1").append(System.lineSeparator());
