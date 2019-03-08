@@ -33,6 +33,8 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 	
 	public FunctionModel(FileContext ctx, String name) {
 		super(ctx);
+		if(MScriptRuntime.isRtFunctionName(name))
+			throw compilerError("Function name '" + name + "' is reserved for MScript Runtime.");
 		this.name = name;
 	}
 	

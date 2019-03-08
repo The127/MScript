@@ -89,17 +89,14 @@ public class ScriptModel implements IScriptContext {
 		}
 		
 		//TODO:
-		// find intermediate labels and replace them in the source 
+		// find intermediate labels and replace them in the source
 		
-		// create optimized runtime
-		
-		// find function with most variables
+		// find function with most variables and create modular/optimized runtime
 		var maxLocals = functions.stream().map(FunctionModel::getLocalCount).reduce(0, Integer::max).intValue();
 		maxLocals = Integer.max(maxLocals, mainFunction.getLocalCount());
 		// only push-/pop-registers to theoretically_max_params + maxLocals
 		var registersUsed = FunctionModel.MAX_PARAMS + maxLocals;
-		sb.append(MScriptRuntime.createPushPopRegisters(registersUsed));
-		
+		sb.append(MScriptRuntime.createRuntime(registersUsed));
 		// remove any empty lines that might be inside the compiled file to reduce the line count
 		return sb.toString().replaceAll("(?m)^[ \t]*\r?\n", "");
 	}
