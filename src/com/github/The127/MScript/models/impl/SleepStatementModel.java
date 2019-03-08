@@ -18,7 +18,8 @@ public class SleepStatementModel extends StatementModel  {
 	@Override
 	public String compile(IScriptContext ctx) {
 		return expression.compile(ctx)
-				+ "" + System.lineSeparator();
+				+ "pop r12" + System.lineSeparator()
+				+ "sleep r12" + System.lineSeparator();
 	}
 
 }
