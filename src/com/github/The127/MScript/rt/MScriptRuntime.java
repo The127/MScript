@@ -106,7 +106,8 @@ public final class MScriptRuntime {
 		sb.append(exp());
 		sb.append(ret());
 		
-		return sb.toString();
+		return sb.toString()
+				.replace(jRet() + ret(), ret());
 	}
 
 	private static String createPushPopRegisters(int registersUsed) {
@@ -129,8 +130,7 @@ public final class MScriptRuntime {
 			sb.append("pop r" + i).append(System.lineSeparator());
 		sb.append(jRet());
 		// optimize last runtime feature to not use a "j __ret"
-		return sb.toString()
-				.replace(jRet() + ret(), ret());
+		return sb.toString();
 	}	
 	
 	private static String twoOperator(boolean isUsed, String operation) {
