@@ -35,6 +35,14 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 		this.name = name;
 	}
 	
+	public int getParamCount() {
+		return paramCount;
+	}
+	
+	public int getLocalCount() {
+		return localCount;
+	}
+	
 	public String getName() {
 		return name;
 	}
