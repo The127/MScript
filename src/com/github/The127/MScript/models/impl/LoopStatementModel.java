@@ -31,7 +31,7 @@ public class LoopStatementModel extends StatementModel  {
 		sb.append(block.compile(ctx));
 		
 		if(condition == null)
-			sb.append("j " + MScriptRuntime.destGotoLabel(label));
+			sb.append("j " + MScriptRuntime.destGotoLabel(label)).append(System.lineSeparator());
 		else {
 			sb.append(condition.compile(ctx)).append(System.lineSeparator());
 			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__round")).append(System.lineSeparator());
