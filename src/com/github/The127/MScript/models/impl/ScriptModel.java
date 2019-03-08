@@ -71,7 +71,7 @@ public class ScriptModel implements IScriptContext {
 	
 	/**
 	 * Entry point for the compilation.
-	 * @return A compiled script as a String.
+	 * @return A pseudo compiled script as a String.
 	 */
 	public String doCompile() {
 		if(mainFunction == null)
@@ -87,9 +87,6 @@ public class ScriptModel implements IScriptContext {
 			currentCompileFunction = f;
 			sb.append(f.compile(null));
 		}
-		
-		//TODO:
-		// find intermediate labels and replace them in the source
 		
 		// find function with most variables and create modular/optimized runtime
 		var maxLocals = functions.stream().map(FunctionModel::getLocalCount).reduce(0, Integer::max).intValue();

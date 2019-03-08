@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.github.The127.MScript.Configuration;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.IFunctionContext;
@@ -93,7 +94,7 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 		for(var statement : statements)
 			sb.append(statement.compile(ctx));
 		
-		return sb.toString();
+		return Configuration.getFunctionOptimizer().optimize(sb.toString());
 	}
 
 }
