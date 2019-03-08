@@ -1,12 +1,18 @@
 package com.github.The127.MScript.rt;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.MScriptCompilationException;
 
 public final class MScriptRuntime {
+	
+	private static final String LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private static Set<String> labels = new HashSet<>();
 	
 	private static boolean
 		isAddUsed = false,
@@ -329,5 +335,16 @@ public final class MScriptRuntime {
 	
 	private static String label(String target, String type, String name) {
 		return "{" + target + "::" + type + "::" + name + "}";
+	}
+	
+	public static String generateLabelName() {
+		var rand = new Random();
+		var label = "";
+		do {
+			label = "";
+			for(int i = 0; i < 32; i++)
+				label = label + LETTERS.charAt(rand.nextInt(LETTERS.length()));
+		}while(labels.contains(label));
+		return label;
 	}
 }
