@@ -24,8 +24,8 @@ public class AssignmentStatementModel extends StatementModel  {
 
 	@Override
 	public String compile(IScriptContext ctx) {
-		// TODO Auto-generated method stub
-		return null;
+		return expression.toString()
+				+ "pop " + ctx.resolveRegister(getVariable(), getFileContext()) + System.lineSeparator();
 	}
 
 }
