@@ -24,7 +24,7 @@ public class AssignmentStatementModel extends StatementModel  {
 
 	@Override
 	public String compile(IScriptContext ctx) {
-		return expression.toString()
+		return expression.compile(ctx)
 				+ "pop " + ctx.resolveRegister(getVariable(), getFileContext()) + System.lineSeparator();
 	}
 
