@@ -90,7 +90,9 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 	public String compile(IScriptContext ctx) {
 		// first add intermediary label
 		var sb = new StringBuilder(MScriptRuntime.sourceFunctionLabel(getName())).append(System.lineSeparator());
-		
+		// remember return address on stack
+		sb.append("push ra").append(System.lineSeparator());
+		// handle all statements
 		for(var statement : statements)
 			sb.append(statement.compile(ctx));
 		
