@@ -26,7 +26,7 @@ public class LoopStatementModel extends StatementModel  {
 	@Override
 	public String compile(IScriptContext ctx) {
 		var sb = new StringBuilder();
-		sb.append(MScriptRuntime.sourceGotoLabel(label));
+		sb.append(MScriptRuntime.sourceGotoLabel(label)).append(System.lineSeparator());
 		
 		sb.append(block.compile(ctx));
 		
