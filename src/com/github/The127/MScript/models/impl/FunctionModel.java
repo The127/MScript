@@ -13,6 +13,7 @@ import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.IFunctionContext;
 import com.github.The127.MScript.models.IScriptContext;
+import com.github.The127.MScript.rt.MScriptRuntime;
 
 public class FunctionModel extends AbstractModel implements IFunctionContext {
 
@@ -85,7 +86,7 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 	@Override
 	public String compile(IScriptContext ctx) {
 		// first add intermediary label
-		var sb = new StringBuilder("{source::function::" + this.getName() + "}");
+		var sb = new StringBuilder(MScriptRuntime.sourceFunctionLabel(getName())).append(System.lineSeparator());
 		
 		for(var statement : statements)
 			sb.append(statement.compile(ctx));

@@ -12,6 +12,7 @@ import java.util.Map;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.IScriptContext;
+import com.github.The127.MScript.rt.MScriptRuntime;
 
 public class ScriptModel implements IScriptContext {
 
@@ -89,6 +90,15 @@ public class ScriptModel implements IScriptContext {
 		
 		//TODO:
 		// find intermediate labels and replace them in the source 
+		
+		// create optimized runtime
+		
+		// find function with most variables
+		var maxLocals = functions.stream().map(FunctionModel::getLocalCount).reduce(0, Integer::max).intValue();
+		maxLocals = Integer.max(maxLocals, mainFunction.getLocalCount());
+		// only push-/pop-registers to theoretically_max_params + maxLocals
+		var registersUsed = FunctionModel.MAX_PARAMS + maxLocals;
+		sb.append(MScriptRuntime.createPushPopRegisters(registersUsed));
 		
 		// remove any empty lines that might be inside the compiled file to reduce the line count
 		return sb.toString().replaceAll("(?m)^[ \t]*\r?\n", "");
