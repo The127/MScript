@@ -24,6 +24,12 @@ public class ScriptModel implements IScriptContext {
 	
 	private FunctionModel currentCompileFunction = null;
 	
+	public ScriptModel() {
+		// setup special variables
+		consts.put("$True", 1d);
+		consts.put("$False", 0d);
+	}
+	
 	public void addAlias(String alias, String device, FileContext ctx) {
 		if(aliases.containsKey(alias))
 			throw new MScriptCompilationException("Duplicate alias '" + alias + "'.", ctx);
@@ -73,7 +79,7 @@ public class ScriptModel implements IScriptContext {
 	 * Entry point for the compilation.
 	 * @return A pseudo compiled script as a String.
 	 */
-	public String doCompile() {
+	public String doCompile() {		
 		if(mainFunction == null)
 			throw new MScriptCompilationException("Missing main function.");
 		currentCompileFunction = mainFunction;
