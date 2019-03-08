@@ -9,10 +9,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.github.The127.MScript.Configuration;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.IFunctionContext;
 import com.github.The127.MScript.models.IScriptContext;
+import com.github.The127.MScript.rt.MScriptRuntime;
 
 public class FunctionModel extends AbstractModel implements IFunctionContext {
 
@@ -32,7 +34,17 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 	
 	public FunctionModel(FileContext ctx, String name) {
 		super(ctx);
+		if(MScriptRuntime.isRtFunctionName(name))
+			throw compilerError("Function name '" + name + "' is reserved for MScript Runtime.");
 		this.name = name;
+	}
+	
+	public int getParamCount() {
+		return paramCount;
+	}
+	
+	public int getLocalCount() {
+		return localCount;
 	}
 	
 	public String getName() {
@@ -77,12 +89,14 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 	@Override
 	public String compile(IScriptContext ctx) {
 		// first add intermediary label
-		var sb = new StringBuilder("{source::function::" + this.getName() + "}");
-		
+		var sb = new StringBuilder(MScriptRuntime.sourceFunctionLabel(getName())).append(System.lineSeparator());
+		// remember return address on stack
+		sb.append("push ra").append(System.lineSeparator());
+		// handle all statements
 		for(var statement : statements)
 			sb.append(statement.compile(ctx));
 		
-		return sb.toString();
+		return Configuration.getFunctionOptimizer().optimize(sb.toString());
 	}
 
 }

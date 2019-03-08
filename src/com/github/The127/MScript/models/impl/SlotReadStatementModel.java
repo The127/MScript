@@ -22,7 +22,8 @@ public class SlotReadStatementModel extends ReadStatementModel {
 				+ " " + ctx.resolveRegister(getVariable(), getFileContext()) 
 				+ " " + ctx.resolveAlias(getDevice(), getFileContext())
 				+ " " + getSlotNumber()
-				+ " " + getTarget();
+				+ " " + getTarget()
+				+ System.lineSeparator();
 	}
 
 }

@@ -14,6 +14,7 @@ public class BasicReadStatementModel extends ReadStatementModel {
 		return "l" 
 				+ " " + ctx.resolveRegister(getVariable(), getFileContext()) 
 				+ " " + ctx.resolveAlias(getDevice(), getFileContext())
-				+ " " + getTarget();
+				+ " " + getTarget()
+				+ System.lineSeparator();
 	}
 }

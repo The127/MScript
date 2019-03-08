@@ -12,6 +12,7 @@ import java.util.Map;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.IScriptContext;
+import com.github.The127.MScript.rt.MScriptRuntime;
 
 public class ScriptModel implements IScriptContext {
 
@@ -22,6 +23,12 @@ public class ScriptModel implements IScriptContext {
 	private List<FunctionModel> functions = new LinkedList<>();
 	
 	private FunctionModel currentCompileFunction = null;
+	
+	public ScriptModel() {
+		// setup special variables
+		consts.put("$True", 1d);
+		consts.put("$False", 0d);
+	}
 	
 	public void addAlias(String alias, String device, FileContext ctx) {
 		if(aliases.containsKey(alias))
@@ -70,9 +77,9 @@ public class ScriptModel implements IScriptContext {
 	
 	/**
 	 * Entry point for the compilation.
-	 * @return A compiled script as a String.
+	 * @return A pseudo compiled script as a String.
 	 */
-	public String doCompile() {
+	public String doCompile() {		
 		if(mainFunction == null)
 			throw new MScriptCompilationException("Missing main function.");
 		currentCompileFunction = mainFunction;
@@ -87,9 +94,12 @@ public class ScriptModel implements IScriptContext {
 			sb.append(f.compile(null));
 		}
 		
-		//TODO:
-		// find intermediate labels and replace them in the source 
-		
+		// find function with most variables and create modular/optimized runtime
+		var maxLocals = functions.stream().map(FunctionModel::getLocalCount).reduce(0, Integer::max).intValue();
+		maxLocals = Integer.max(maxLocals, mainFunction.getLocalCount());
+		// only push-/pop-registers to theoretically_max_params + maxLocals
+		var registersUsed = FunctionModel.MAX_PARAMS + maxLocals;
+		sb.append(MScriptRuntime.createRuntime(registersUsed));
 		// remove any empty lines that might be inside the compiled file to reduce the line count
 		return sb.toString().replaceAll("(?m)^[ \t]*\r?\n", "");
 	}

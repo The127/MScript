@@ -22,6 +22,7 @@ public class ReagentReadStatementModel extends ReadStatementModel {
 				+ " " + ctx.resolveRegister(getVariable(), getFileContext()) 
 				+ " " + ctx.resolveAlias(getDevice(), getFileContext())
 				+ " " + getReagentMode()
-				+ " " + getTarget();
+				+ " " + getTarget()
+				+ System.lineSeparator();
 	}
 }

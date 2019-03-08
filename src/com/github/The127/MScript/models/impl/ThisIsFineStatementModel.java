@@ -11,8 +11,7 @@ public class ThisIsFineStatementModel extends StatementModel  {
 
 	@Override
 	public String compile(IScriptContext ctx) {
-		// TODO Auto-generated method stub
-		return null;
+		return "hcf" + System.lineSeparator();
 	}
 
 }

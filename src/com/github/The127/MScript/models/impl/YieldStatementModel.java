@@ -11,8 +11,7 @@ public class YieldStatementModel extends StatementModel  {
 
 	@Override
 	public String compile(IScriptContext ctx) {
-		// TODO Auto-generated method stub
-		return null;
+		return "yield" + System.lineSeparator();
 	}
 
 }
