@@ -4,25 +4,19 @@
  */
 package com.github.The127.MScript.models.impl;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 import com.github.The127.MScript.rt.MScriptRuntime;
 
-public class ConditionalStatementModel extends StatementModel  {
+public class ElifStatementModel extends AbstractModel {
 
-	private List<ElifStatementModel> elifStatements = new LinkedList<>();
-	private ElseStatementModel elseStatement;
-	
 	private ExpressionModel condition;
 	private BlockModel block;
 	
-	private final String label = "__conditionalIf__" + MScriptRuntime.generateLabelName();
-	private final String end = "__conditionalEnd__" + MScriptRuntime.generateLabelName();
+	private final String label = "__conditionalElif__" + MScriptRuntime.generateLabelName();
+	private String end;
 	
-	public ConditionalStatementModel(FileContext ctx) {
+	public ElifStatementModel(FileContext ctx) {
 		super(ctx);
 	}
 	
@@ -33,14 +27,9 @@ public class ConditionalStatementModel extends StatementModel  {
 	public void setBlock(BlockModel block) {
 		this.block = block;
 	}
-	
-	public void addElifStatement(ElifStatementModel elifStatement) {
-		elifStatements.add(elifStatement);
-		elifStatement.setEnd(end);
-	}
-	
-	public void setElseStatement(ElseStatementModel elseStatement) {
-		this.elseStatement = elseStatement;
+
+	public void setEnd(String end) {
+		this.end = end;
 	}
 
 	@Override
@@ -58,16 +47,6 @@ public class ConditionalStatementModel extends StatementModel  {
 		// mark end of block
 		sb.append(MScriptRuntime.sourceGotoLabel(label)).append(System.lineSeparator());
 		
-		for(var elif : elifStatements)
-			sb.append(elif.compile(ctx));
-		
-		if(elseStatement != null)
-			sb.append(elseStatement.compile(ctx));
-		
-		// mark end of if
-		sb.append(MScriptRuntime.sourceGotoLabel(end)).append(System.lineSeparator());
-		
 		return sb.toString();
 	}
-
 }

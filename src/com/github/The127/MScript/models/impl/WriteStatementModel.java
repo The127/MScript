@@ -1,3 +1,7 @@
+/**
+ * MIT License
+ * Copyright (c) 2019 Julian Baehr and David Brandt
+ */
 package com.github.The127.MScript.models.impl;
 
 import com.github.The127.MScript.FileContext;
@@ -31,7 +35,8 @@ public class WriteStatementModel extends StatementModel {
 		return "s"
 				+ " " + ctx.resolveAlias(getDevice(), getFileContext())
 				+ " " + getTarget()
-				+ " " + ctx.resolveRegister(getVariable(), getFileContext()) ;
+				+ " " + ctx.resolveRegister(getVariable(), getFileContext()) 
+				+ System.lineSeparator();
 	}
 
 }

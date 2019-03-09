@@ -7,15 +7,17 @@ package com.github.The127.MScript.models.impl;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 
-public class ThisIsFineStatementModel extends StatementModel  {
+public class LiteralModel extends AtomModel {
 
-	public ThisIsFineStatementModel(FileContext ctx) {
+	private final String number;
+	
+	public LiteralModel(FileContext ctx, String number) {
 		super(ctx);
+		this.number = number;
 	}
 
 	@Override
 	public String compile(IScriptContext ctx) {
-		return "hcf" + System.lineSeparator();
+		return "push " + number + System.lineSeparator();
 	}
-
 }

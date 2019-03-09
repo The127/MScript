@@ -1,3 +1,7 @@
+/**
+ * MIT License
+ * Copyright (c) 2019 Julian Baehr and David Brandt
+ */
 package com.github.The127.MScript.models.impl;
 
 import com.github.The127.MScript.FileContext;
@@ -22,7 +26,8 @@ public class SlotReadStatementModel extends ReadStatementModel {
 				+ " " + ctx.resolveRegister(getVariable(), getFileContext()) 
 				+ " " + ctx.resolveAlias(getDevice(), getFileContext())
 				+ " " + getSlotNumber()
-				+ " " + getTarget();
+				+ " " + getTarget()
+				+ System.lineSeparator();
 	}
 
 }

@@ -1,3 +1,7 @@
+/**
+ * MIT License
+ * Copyright (c) 2019 Julian Baehr and David Brandt
+ */
 package com.github.The127.MScript.models.impl;
 
 import com.github.The127.MScript.FileContext;
@@ -11,8 +15,7 @@ public class YieldStatementModel extends StatementModel  {
 
 	@Override
 	public String compile(IScriptContext ctx) {
-		// TODO Auto-generated method stub
-		return null;
+		return "yield" + System.lineSeparator();
 	}
 
 }

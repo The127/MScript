@@ -6,9 +6,9 @@ package com.github.The127.MScript.models.impl;
 
 import com.github.The127.MScript.FileContext;
 
-public abstract class ExpressionModel extends AbstractModel {
-
-	public ExpressionModel(FileContext ctx) {
+public abstract class AtomModel extends AbstractModel {
+	
+	public AtomModel(FileContext ctx) {
 		super(ctx);
 	}
 }

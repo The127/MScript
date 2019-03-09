@@ -7,15 +7,18 @@ package com.github.The127.MScript.models.impl;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 
-public class ThisIsFineStatementModel extends StatementModel  {
+public class ParanthesisModel extends AtomModel {
 
-	public ThisIsFineStatementModel(FileContext ctx) {
+	private final ExpressionModel expression;
+	
+	public ParanthesisModel(FileContext ctx, ExpressionModel expression) {
 		super(ctx);
+		this.expression = expression;
 	}
 
 	@Override
 	public String compile(IScriptContext ctx) {
-		return "hcf" + System.lineSeparator();
+		return expression.compile(ctx);
 	}
 
 }
