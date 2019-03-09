@@ -11,8 +11,12 @@ before_script:
 script: ant build -v
 
 after_success:
-  - javadoc -private -sourcepath "./src"
-  - if [ "$TRAVIS_BRANCH" = "feature/cicd" ]; then
-      echo "only on master";
-      ls;
-    fi;
+  - javadoc -private -sourcepath src --module-path lib -subpackages com.github.The127 -d docs
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: docs/  # or remove this line to upload from root of repo
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  on:
+    branch: master
