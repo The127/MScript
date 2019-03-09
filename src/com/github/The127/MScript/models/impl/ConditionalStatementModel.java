@@ -1,3 +1,7 @@
+/**
+ * MIT License
+ * Copyright (c) 2019 Julian Bähr and David Brandt
+ */
 package com.github.The127.MScript.models.impl;
 
 import java.util.LinkedList;
@@ -15,7 +19,8 @@ public class ConditionalStatementModel extends StatementModel  {
 	private ExpressionModel condition;
 	private BlockModel block;
 	
-	private final String label = "__conditional__" + MScriptRuntime.generateLabelName();
+	private final String label = "__conditionalIf__" + MScriptRuntime.generateLabelName();
+	private final String end = "__conditionalEnd__" + MScriptRuntime.generateLabelName();
 	
 	public ConditionalStatementModel(FileContext ctx) {
 		super(ctx);
@@ -31,6 +36,7 @@ public class ConditionalStatementModel extends StatementModel  {
 	
 	public void addElifStatement(ElifStatementModel elifStatement) {
 		elifStatements.add(elifStatement);
+		elifStatement.setEnd(end);
 	}
 	
 	public void setElseStatement(ElseStatementModel elseStatement) {
@@ -42,9 +48,24 @@ public class ConditionalStatementModel extends StatementModel  {
 		var sb = new StringBuilder();
 		
 		sb.append(condition.compile(ctx));
-		sb.append("jal ").append(MScriptRuntime.destGotoLabel("__round")).append(System.lineSeparator());
-		sb.append("bne r12 0 ").append(MScriptRuntime.destGotoLabel(label)).append(System.lineSeparator());
+		// use internal condition evaluation to save space
+		sb.append("jal ").append(MScriptRuntime.destGotoLabel("__condition")).append(System.lineSeparator());
+		// if is false jump to end of block
+		sb.append("beq r12 0 ").append(MScriptRuntime.destGotoLabel(label)).append(System.lineSeparator());
 		sb.append(block.compile(ctx));
+		// if block executes jump to end of if-elif-else
+		sb.append("j ").append(MScriptRuntime.destGotoLabel(end)).append(System.lineSeparator());
+		// mark end of block
+		sb.append(MScriptRuntime.sourceGotoLabel(label)).append(System.lineSeparator());
+		
+		for(var elif : elifStatements)
+			sb.append(elif.compile(ctx));
+		
+		if(elseStatement != null)
+			sb.append(elseStatement.compile(ctx));
+		
+		// mark end of if
+		sb.append(MScriptRuntime.sourceGotoLabel(end)).append(System.lineSeparator());
 		
 		return sb.toString();
 	}

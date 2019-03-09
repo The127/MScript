@@ -5,13 +5,15 @@
 package com.github.The127.MScript.rt;
 
 /**
- * This class implements the default function optimization which is no optimization. 
+ * This class implements a function optimization algorithm.
  * @author Julian Baehr
  */
-public class NoFunctionOptimizer implements IFunctionOptimizer {
+public class FunctionOptimizer implements IFunctionOptimizer {
 
 	@Override
 	public String optimize(String pseudoCompiledFunction) {
+		//TODO real optimization
 		return pseudoCompiledFunction;
 	}
+
 }

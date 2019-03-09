@@ -1,3 +1,7 @@
+/**
+ * MIT License
+ * Copyright (c) 2019 Julian Bähr and David Brandt
+ */
 package com.github.The127.MScript.rt;
 
 import java.util.Arrays;
@@ -9,7 +13,18 @@ import java.util.Set;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.MScriptCompilationException;
 
+/**
+ * This class provides a modular and dynamically generated runtime environment for MScript. 
+ * @author Julian Baehr
+ */
 public final class MScriptRuntime {
+	
+	private static final int Major = 0;
+	private static final int Minor = 1;
+	/**
+	 * The current compiler version.
+	 */
+	public static final String COMPILER_VERSION = "MScriptV" + Major + "." + Minor;
 	
 	private static final String LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private static Set<String> labels = new HashSet<>();
@@ -38,7 +53,8 @@ public final class MScriptRuntime {
 		isExpUsed = false;
 	
 	private static boolean
-		isFunctionCalled = false;
+		isFunctionCalled = false,
+		isConditionEvaluated = false;
 	
 	private static final List<String> rtFunctionNames = Arrays.asList(new String[]{
 		"floor",
@@ -70,6 +86,11 @@ public final class MScriptRuntime {
 		1, // exp
 	};
 	
+	/**
+	 * @param name The name of the internal runtime function.
+	 * @param ctx The file context for better error handling.
+	 * @return The amount of parameters for the specified runtime internal function.
+	 */
 	public static int getParametersForRtFunction(String name, FileContext ctx) {
 		if(!isRtFunctionName(name))
 			throw new MScriptCompilationException("Internal compiler/runtime error: detected '" + name + "' falsly as a rt function.", ctx); 
@@ -77,10 +98,19 @@ public final class MScriptRuntime {
 		return rtFunctionParameterCount[index];
 	}
 	
+	/**
+	 * @param name The name of the internal runtime function.
+	 * @return True if the provided name is the name of an internal runtime function.
+	 */
 	public static boolean isRtFunctionName(String name) {
 		return rtFunctionNames.contains(name);
 	}
 	
+	/**
+	 * Dynamically generates a string representation of the modular MScript runtime.
+	 * @param registersUsed The amount of maximum registers used by function parameters and variables.
+	 * @return The runtime for the script.
+	 */
 	public static String createRuntime(int registersUsed) {
 		var sb = new StringBuilder();
 		
@@ -105,7 +135,9 @@ public final class MScriptRuntime {
 		sb.append(sqrt());
 		sb.append(exp());
 		sb.append(ret());
-		
+		sb.append(condition());
+
+		// optimize last runtime feature to not use "j __ret"
 		return sb.toString()
 				.replace(jRet() + ret(), ret());
 	}
@@ -129,7 +161,6 @@ public final class MScriptRuntime {
 		for(int i = registersUsed-1; i > 0; i--)
 			sb.append("pop r" + i).append(System.lineSeparator());
 		sb.append(jRet());
-		// optimize last runtime feature to not use a "j __ret"
 		return sb.toString();
 	}	
 	
@@ -248,11 +279,27 @@ public final class MScriptRuntime {
 			+ "j ra" + System.lineSeparator();
 	}
 	
-	// Label creation logic
+	private static String condition() {
+		if(!isConditionEvaluated)
+			return "";
+		return "pop r12" + System.lineSeparator()
+			+ "round r12 r12" + System.lineSeparator();
+	}
+	
+	/**
+	 * Creates a source label for a function.
+	 * @param name The function name.
+	 * @return a source label for the function.
+	 */
 	public static String sourceFunctionLabel(String name) {
 		return sourceLabel("function", name);
 	}
 	
+	/**
+	 * Creates a source label for a goto label.
+	 * @param name The goto label name.
+	 * @return a source label for the goto label.
+	 */
 	public static String sourceGotoLabel(String name) {
 		return sourceLabel("goto", name);
 	}
@@ -261,13 +308,26 @@ public final class MScriptRuntime {
 		return label("source", type, name);
 	}
 	
+	/**
+	 * Creates a destination label for a function.
+	 * @param name The function name.
+	 * @return a destination for the function.
+	 */
 	public static String destFunctionLabel(String name) {
 		isFunctionCalled = true;
 		return destLabel("function", name);
 	}
 	
+	/**
+	 * Creates a destination label for a goto label.
+	 * @param name The goto label name.
+	 * @return a destinatino label for the goto label.
+	 */
 	public static String destGotoLabel(String name) {
 		switch(name) {
+		case "__condition":
+			isConditionEvaluated = true;
+			break;
 		case "__floor":
 			isFloorUsed = true;
 			break;
@@ -337,6 +397,10 @@ public final class MScriptRuntime {
 		return "{" + target + "::" + type + "::" + name + "}";
 	}
 	
+	/**
+	 * Generates a unique label name.
+	 * @return a unique label name.
+	 */
 	public static String generateLabelName() {
 		var rand = new Random();
 		var label = "";
