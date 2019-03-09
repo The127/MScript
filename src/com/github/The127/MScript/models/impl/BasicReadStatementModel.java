@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Bähr and David Brandt
+ * Copyright (c) 2019 Julian Baehr and David Brandt
  */
 package com.github.The127.MScript.models.impl;
 
