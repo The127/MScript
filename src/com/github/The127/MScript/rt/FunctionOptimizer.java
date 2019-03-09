@@ -4,6 +4,10 @@
  */
 package com.github.The127.MScript.rt;
 
+/**
+ * This class implements a function optimization algorithm.
+ * @author Julian Baehr
+ */
 public class FunctionOptimizer implements IFunctionOptimizer {
 
 	@Override

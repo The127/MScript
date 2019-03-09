@@ -4,7 +4,10 @@
  */
 package com.github.The127.MScript.rt;
 
-// default optimizer is no optimizer
+/**
+ * This class implements the default function optimization which is no optimization. 
+ * @author Julian Baehr
+ */
 public class NoFunctionOptimizer implements IFunctionOptimizer {
 
 	@Override
