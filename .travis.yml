@@ -11,8 +11,8 @@ before_script:
 script: ant build -v
 
 after_success:
-  - javadoc -private -sourcepath "src"
+  - javadoc -private -sourcepath "./src"
   - if [ "$TRAVIS_BRANCH" = "feature/cicd" ]; then
-      echo "only on master"
-      ls
-    fi
+      echo "only on master";
+      ls;
+    fi;
