@@ -3,9 +3,16 @@ jdk:
   - oraclejdk11
 
 before_script:
-    - wget --no-check-certificate https://www.apache.org/dist/ant/binaries/apache-ant-1.10.5-bin.tar.gz
-    - tar -xzvf apache-ant-1.10.5-bin.tar.gz
-    - export PATH=`pwd`/apache-ant-1.10.5/bin:$PATH
-    - echo $(ant -version)
+  - wget --no-check-certificate https://www.apache.org/dist/ant/binaries/apache-ant-1.10.5-bin.tar.gz
+  - tar -xzvf apache-ant-1.10.5-bin.tar.gz
+  - export PATH=`pwd`/apache-ant-1.10.5/bin:$PATH
+  - echo $(ant -version)
 
 script: ant build -v
+
+after_success:
+  - javadoc -private -sourcepath "src"
+  - if [ "$TRAVIS_BRANCH" = "feature/cicd" ]; then
+      echo "only on master"
+      ls
+    fi
