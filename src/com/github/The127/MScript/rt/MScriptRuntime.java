@@ -11,6 +11,10 @@ import com.github.The127.MScript.MScriptCompilationException;
 
 public final class MScriptRuntime {
 	
+	private static final int Major = 0;
+	private static final int Minor = 1;
+	public static final String COMPILER_VERSION = "MScriptV" + Major + "." + Minor;
+	
 	private static final String LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private static Set<String> labels = new HashSet<>();
 	
@@ -38,7 +42,8 @@ public final class MScriptRuntime {
 		isExpUsed = false;
 	
 	private static boolean
-		isFunctionCalled = false;
+		isFunctionCalled = false,
+		isConditionEvaluated = false;
 	
 	private static final List<String> rtFunctionNames = Arrays.asList(new String[]{
 		"floor",
@@ -105,6 +110,7 @@ public final class MScriptRuntime {
 		sb.append(sqrt());
 		sb.append(exp());
 		sb.append(ret());
+		sb.append(condition());
 		
 		return sb.toString()
 				.replace(jRet() + ret(), ret());
@@ -248,6 +254,13 @@ public final class MScriptRuntime {
 			+ "j ra" + System.lineSeparator();
 	}
 	
+	private static String condition() {
+		if(!isConditionEvaluated)
+			return "";
+		return "pop r12" + System.lineSeparator()
+			+ "round r12 r12" + System.lineSeparator();
+	}
+	
 	// Label creation logic
 	public static String sourceFunctionLabel(String name) {
 		return sourceLabel("function", name);
@@ -268,6 +281,9 @@ public final class MScriptRuntime {
 	
 	public static String destGotoLabel(String name) {
 		switch(name) {
+		case "__condition":
+			isConditionEvaluated = true;
+			break;
 		case "__floor":
 			isFloorUsed = true;
 			break;
