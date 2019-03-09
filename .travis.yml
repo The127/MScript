@@ -1,7 +1,5 @@
 language: java
 jdk:
   - oraclejdk11
-install: ant deps
 
-script:
-  - ant build
+script: ant build -v
