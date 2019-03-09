@@ -10,10 +10,16 @@
     <property name="source" value="10"/>
     <path id="MScrtip.classpath">
         <pathelement location="bin"/>
-        <pathelement location="lib/antlr-runtime-4.7.2.jar"/>
     </path>
+    <path id="MScrtip.modulepath">
+        <pathelement location="lib/antlr-runtime-4.7.2.jar"/>
+	</path>
     <path id="run.MScriptRuntime.classpath">
         <path refid="MScrtip.classpath"/>
+        <pathelement location="lib/antlr-runtime-4.7.2.jar"/>
+    </path>
+    <path id="run.MScriptRuntime.modulepath">
+        <path refid="MScrtip.modulepath"/>
         <pathelement location="lib/antlr-runtime-4.7.2.jar"/>
     </path>
     <target name="init">
@@ -35,12 +41,14 @@
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <classpath refid="MScrtip.classpath"/>
+            <modulepath refid="MScrtip.modulepath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target name="MScriptRuntime">
         <java classname="com.github.The127.MScript.rt.MScriptRuntime" failonerror="true" fork="yes">
             <classpath refid="run.MScriptRuntime.classpath"/>
+            <modulepath refid="run.MScriptRuntime.modulepath"/>
         </java>
     </target>
 </project>
