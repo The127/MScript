@@ -12,6 +12,7 @@ import java.util.Set;
 
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.MScriptCompilationException;
+import com.github.The127.MScript.models.impl.FunctionModel;
 
 /**
  * This class provides a modular and dynamically generated runtime environment for MScript. 
@@ -149,13 +150,20 @@ public final class MScriptRuntime {
 		
 		var sb = new StringBuilder();
 		
-		sb.append(sourceFunctionLabel("__push_registers")).append(System.lineSeparator());
+		int params = registersUsed - FunctionModel.MAX_LOCALS;
+		for(int i = params-1; i > 0; i--) {
+			sb.append(sourceGotoLabel("__pop_params_" + i)).append(System.lineSeparator());
+			sb.append("pop r" + i).append(System.lineSeparator());
+		}
+		sb.append("j ra").append(System.lineSeparator());
+		
+		sb.append(sourceGotoLabel("__push_registers")).append(System.lineSeparator());
 		for(int i = 0; i < registersUsed; i++)
 			sb.append("push r" + i).append(System.lineSeparator());
 		// return
 		sb.append("j ra").append(System.lineSeparator());
 
-		sb.append(sourceFunctionLabel("__push_registers")).append(System.lineSeparator());
+		sb.append(sourceGotoLabel("__push_registers")).append(System.lineSeparator());
 		// save return value
 		sb.append("push r12").append(System.lineSeparator());
 		for(int i = registersUsed-1; i > 0; i--)
