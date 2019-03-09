@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Bähr and David Brandt
+ * Copyright (c) 2019 Julian Baehr and David Brandt
  */
 package com.github.The127.MScript.models.impl;
 
@@ -48,10 +48,8 @@ public class ConditionalStatementModel extends StatementModel  {
 		var sb = new StringBuilder();
 		
 		sb.append(condition.compile(ctx));
-		// read condition result into r12
-		sb.append("pop r12").append(System.lineSeparator());
-		// round to nearest int
-		sb.append("round r12 r12").append(System.lineSeparator());
+		// use internal condition evaluation to save space
+		sb.append("jal ").append(MScriptRuntime.destGotoLabel("__condition")).append(System.lineSeparator());
 		// if is false jump to end of block
 		sb.append("beq r12 0 ").append(MScriptRuntime.destGotoLabel(label)).append(System.lineSeparator());
 		sb.append(block.compile(ctx));
