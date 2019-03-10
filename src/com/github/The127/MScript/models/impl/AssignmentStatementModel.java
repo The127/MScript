@@ -7,6 +7,10 @@ package com.github.The127.MScript.models.impl;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 
+/**
+ * This class represents an assignment statement in the MScript language.
+ * @author Julian Baehr
+ */
 public class AssignmentStatementModel extends StatementModel  {
 
 	private final String variable;

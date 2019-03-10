@@ -7,6 +7,10 @@ package com.github.The127.MScript.models.impl;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 
+/**
+ * This class represents an else block in the MScript language.
+ * @author Julian Baehr
+ */
 public class ElseStatementModel extends AbstractModel {
 	
 	private BlockModel block;

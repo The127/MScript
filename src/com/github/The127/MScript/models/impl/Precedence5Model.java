@@ -9,9 +9,15 @@ import java.util.List;
 import java.util.Objects;
 
 import com.github.The127.MScript.FileContext;
+import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.ICompilableModel;
 import com.github.The127.MScript.models.IScriptContext;
+import com.github.The127.MScript.rt.MScriptRuntime;
 
+/**
+ * This class represents the precedence 5 operator expressions in the MScript language.
+ * @author Julian Baehr
+ */
 public class Precedence5Model extends AbstractModel {
 
 	public static enum Operation {
@@ -33,6 +39,19 @@ public class Precedence5Model extends AbstractModel {
 				return "__mod";
 			}
 		};
+		
+		public static Operation fromString(String op, FileContext ctx) {
+			switch(op) {
+			case "*":
+				return mul;
+			case "/":
+				return div;
+			case "%":
+				return mod;
+			default:
+				throw new MScriptCompilationException("Unknown precedence 5 operator: " + op + ".", ctx);
+			}
+		}
 	}
 	
 	private class Item implements ICompilableModel {
@@ -52,7 +71,7 @@ public class Precedence5Model extends AbstractModel {
 			var sb = new StringBuilder();
 			
 			sb.append(model.compile(ctx));
-			sb.append("jal ").append(operation.toString()).append(System.lineSeparator());
+			sb.append("jal ").append(MScriptRuntime.destGotoLabel(operation.toString())).append(System.lineSeparator());
 			
 			return sb.toString();
 		}
