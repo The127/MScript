@@ -40,7 +40,13 @@ public final class MScriptRuntime {
 		isNotUsed = false,
 		isAndUsed = false,
 		isOrUsed = false,
-		isXorUsed = false;
+		isXorUsed = false,
+		isLessUsed = false,
+		isLessOrEqualUsed = false,
+		isGreaterUsed = false,
+		isGreaterOrEqualUsed = false,
+		isEqualUsed = false,
+		isNotEqualUsed = false;
 	
 	private static boolean
 		isFloorUsed = false,
@@ -58,7 +64,10 @@ public final class MScriptRuntime {
 	
 	private static boolean
 		isFunctionCalled = false,
-		isConditionEvaluated = false;
+		isConditionEvaluated = false,
+		isRetUsed = false,
+		isRetTrueUsed = false,
+		isRetFalseUsed = false;
 	
 	private static final List<String> rtFunctionNames = Arrays.asList(new String[]{
 		"floor",
@@ -205,6 +214,14 @@ public final class MScriptRuntime {
 			+ jRet();
 	}
 	
+	private static String less() {
+		return "pop r13" + System.lineSeparator()
+			 + "pop r12" + System.lineSeparator()
+			 + "sub r12 r12 r13" + System.lineSeparator()
+			 + ""
+			 + jRet();
+	}
+	
 	private static String twoOpLogic(boolean isUsed, String operation) {
 		if(!isUsed)
 			return "";
@@ -222,11 +239,11 @@ public final class MScriptRuntime {
 	}
 	
 	private static String or() {
-		return twoOpLogic(isAndUsed, "or");
+		return twoOpLogic(isOrUsed, "or");
 	}
 	
 	private static String xor() {
-		return twoOpLogic(isAndUsed, "xor");
+		return twoOpLogic(isXorUsed, "xor");
 	}
 	
 	private static String add() {
@@ -258,12 +275,16 @@ public final class MScriptRuntime {
 	}
 
 	private static String negate() {
+		if(!isNegateUsed)
+			return "";
 		return  "pop r12" + System.lineSeparator()
 			  + "sub r12 0 r12" + System.lineSeparator()
 			  + jRet();
 	}
 	
 	private static String not() {
+		if(!isNotUsed)
+			return "";
 		return "pop r12" + System.lineSeparator()
 			 + "round r12 r12" + System.lineSeparator()
 			 + "or r12 r12 0" + System.lineSeparator()
@@ -292,6 +313,8 @@ public final class MScriptRuntime {
 	}
 	
 	private static String bool() {
+		if(!isBoolUsed)
+			return "";
 		return "pop r12" + System.lineSeparator()
 			 + "round r12 r12" + System.lineSeparator()
 			 + "or r12 r12 0" + System.lineSeparator()
@@ -315,10 +338,13 @@ public final class MScriptRuntime {
 	}
 	
 	private static String jRet() {
+		isRetUsed = true;
 		return "j " + destGotoLabel("__ret") + System.lineSeparator();
 	}
 	
 	private static String ret() {
+		if(!isRetUsed)
+			return "";
 		// always add this since at least one runtime feature is used
 		return sourceGotoLabel("__ret") + System.lineSeparator()
 			// push result on stack before returning
