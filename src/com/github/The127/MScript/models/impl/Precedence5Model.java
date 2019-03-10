@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.github.The127.MScript.FileContext;
+import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.ICompilableModel;
 import com.github.The127.MScript.models.IScriptContext;
 
@@ -33,6 +34,19 @@ public class Precedence5Model extends AbstractModel {
 				return "__mod";
 			}
 		};
+		
+		public static Operation fromString(String op, FileContext ctx) {
+			switch(op) {
+			case "*":
+				return mul;
+			case "/":
+				return div;
+			case "%":
+				return mod;
+			default:
+				throw new MScriptCompilationException("Unknown precedence 5 operator: " + op + ".", ctx);
+			}
+		}
 	}
 	
 	private class Item implements ICompilableModel {

@@ -9,10 +9,11 @@ import java.util.List;
 import java.util.Objects;
 
 import com.github.The127.MScript.FileContext;
+import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.ICompilableModel;
 import com.github.The127.MScript.models.IScriptContext;
 
-public class EvalExpressionModel extends AbstractModel {
+public class EvalExpressionModel extends ExpressionModel {
 
 	public static enum Operation {
 		and{
@@ -33,6 +34,19 @@ public class EvalExpressionModel extends AbstractModel {
 				return "__xor";
 			}
 		};
+		
+		public static Operation fromString(String op, FileContext ctx) {
+			switch(op) {
+			case "&":
+				return and;
+			case "|":
+				return or;
+			case "^":
+				return xor;
+			default:
+				throw new MScriptCompilationException("Unknown precedence 1 operator: " + op + ".", ctx);
+			}
+		}
 	}
 	
 	private class Item implements ICompilableModel {

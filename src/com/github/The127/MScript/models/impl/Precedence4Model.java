@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.github.The127.MScript.FileContext;
+import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.ICompilableModel;
 import com.github.The127.MScript.models.IScriptContext;
 
@@ -27,6 +28,17 @@ public class Precedence4Model extends AbstractModel {
 				return "__sub";
 			}
 		};
+		
+		public static Operation fromString(String op, FileContext ctx) {
+			switch(op) {
+			case "+":
+				return add;
+			case "-":
+				return sub;
+			default:
+				throw new MScriptCompilationException("Unknown precedence 4 operator: " + op + ".", ctx);
+			}
+		}
 	}
 	
 	private class Item implements ICompilableModel {

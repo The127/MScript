@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.github.The127.MScript.FileContext;
+import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.ICompilableModel;
 import com.github.The127.MScript.models.IScriptContext;
 
@@ -51,6 +52,25 @@ public class Precedence2Model extends AbstractModel {
 				return "__notEqual";
 			}
 		};
+		
+		public static Operation fromString(String op, FileContext ctx) {
+			switch(op) {
+			case "<":
+				return less;
+			case "<=":
+				return lessOrEqual;
+			case ">":
+				return greater;
+			case ">=":
+				return greaterOrEqual;
+			case "==":
+				return equal;
+			case "!=":
+				return notEqual;
+			default:
+				throw new MScriptCompilationException("Unknown precedence 2 operator: " + op + ".", ctx);
+			}
+		}
 	}
 	
 	private class Item implements ICompilableModel {
