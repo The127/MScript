@@ -258,11 +258,17 @@ public final class MScriptRuntime {
 	}
 
 	private static String negate() {
-		return oneOperator(isNegateUsed, "negate");
+		return  "pop r12" + System.lineSeparator()
+			  + "sub r12 0 r12" + System.lineSeparator()
+			  + jRet();
 	}
 	
 	private static String not() {
-		return oneOperator(isNotUsed, "not");
+		return "pop r12" + System.lineSeparator()
+			 + "round r12 r12" + System.lineSeparator()
+			 + "or r12 r12 0" + System.lineSeparator()
+			 + "sub r12 1 r12" + System.lineSeparator()
+			 + jRet();
 	}
 	
 	private static String floor() {
