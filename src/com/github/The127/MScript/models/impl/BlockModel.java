@@ -10,6 +10,10 @@ import java.util.List;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 
+/**
+ * This class represents a block ({ statement* }) in the MScript language.
+ * @author Julian Baehr
+ */
 public class BlockModel extends AbstractModel {
 
 	private List<StatementModel> statements = new LinkedList<>();

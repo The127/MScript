@@ -6,6 +6,10 @@ package com.github.The127.MScript.models.impl;
 
 import com.github.The127.MScript.FileContext;
 
+/**
+ * This class represents an abstract read statement in the MScript language.
+ * @author Julian Baehr
+ */
 public abstract class ReadStatementModel extends StatementModel {
 
 	private final String device, target, variable;
