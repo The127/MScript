@@ -17,7 +17,7 @@ public class Precedence3Model extends AbstractModel {
 		unaryMinus{
 			@Override
 			public String toString() {
-				return "__unaryMinus";
+				return "__negate";
 			}
 		},
 		not{
