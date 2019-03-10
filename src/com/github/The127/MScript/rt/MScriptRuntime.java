@@ -37,7 +37,10 @@ public final class MScriptRuntime {
 		isMulUsed = false,
 		isModUsed = false,
 		isNegateUsed = false,
-		isNotUsed = false;
+		isNotUsed = false,
+		isAndUsed = false,
+		isOrUsed = false,
+		isXorUsed = false;
 	
 	private static boolean
 		isFloorUsed = false,
@@ -116,6 +119,9 @@ public final class MScriptRuntime {
 		var sb = new StringBuilder();
 		
 		sb.append(createPushPopRegisters(registersUsed));
+		sb.append(and());
+		sb.append(or());
+		sb.append(xor());
 		sb.append(add());
 		sb.append(sub());
 		sb.append(mul());
@@ -199,6 +205,30 @@ public final class MScriptRuntime {
 			+ jRet();
 	}
 	
+	private static String twoOpLogic(boolean isUsed, String operation) {
+		if(!isUsed)
+			return "";
+		return 
+				"pop r13" + System.lineSeparator()
+			  + "pop r12" + System.lineSeparator()
+			  + "round r13 r13" + System.lineSeparator()
+			  + "round r12 r12" + System.lineSeparator()
+			  + operation + " r12 r12 r13" + System.lineSeparator()
+			  + jRet();
+	}
+	
+	private static String and() {
+		return twoOpLogic(isAndUsed, "and");
+	}
+	
+	private static String or() {
+		return twoOpLogic(isAndUsed, "or");
+	}
+	
+	private static String xor() {
+		return twoOpLogic(isAndUsed, "xor");
+	}
+	
 	private static String add() {
 		return twoOperator(isAddUsed, "add");
 	}
@@ -256,7 +286,10 @@ public final class MScriptRuntime {
 	}
 	
 	private static String bool() {
-		return oneOperator(isBoolUsed, "bool");
+		return "pop r12" + System.lineSeparator()
+			 + "round r12 r12" + System.lineSeparator()
+			 + "or r12 r12 0" + System.lineSeparator()
+			 + jRet();
 	}
 	
 	private static String rand() {
