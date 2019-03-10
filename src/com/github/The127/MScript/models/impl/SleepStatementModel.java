@@ -14,9 +14,14 @@ import com.github.The127.MScript.models.IScriptContext;
 public class SleepStatementModel extends StatementModel  {
 
 	private ExpressionModel expression;
+	private double number;
 	
 	public SleepStatementModel(FileContext ctx) {
 		super(ctx);
+	}
+	
+	public void setNumber(double number) {
+		this.number = number;
 	}
 	
 	public void setExpression(ExpressionModel expression) {
@@ -25,9 +30,12 @@ public class SleepStatementModel extends StatementModel  {
 
 	@Override
 	public String compile(IScriptContext ctx) {
-		return expression.compile(ctx)
-				+ "pop r12" + System.lineSeparator()
-				+ "sleep r12" + System.lineSeparator();
+		if(expression != null)
+			return expression.compile(ctx)
+					+ "pop r12" + System.lineSeparator()
+					+ "sleep r12" + System.lineSeparator();
+		else
+			return "sleep " + number + System.lineSeparator();
 	}
 
 }

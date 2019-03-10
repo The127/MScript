@@ -22,7 +22,7 @@ constant
 	: 'def' Const 'as' Number ';'
 	;
 
-// fn my_function (param1, param2, …, paramN) { ... }
+// fn my_function (param1, param2, . . ., paramN) { ... }
 function
 	: 'fn' Identifier '(' params? ')' fnBody
 	;
