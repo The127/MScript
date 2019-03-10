@@ -61,7 +61,7 @@ public class FunctionCallModel extends ExpressionModel {
 			for(var arg : args)
 				sb.append(arg.compile(ctx));
 			if(args.size() > 0)
-				sb.append(MScriptRuntime.destGotoLabel("__pop_params_" + args.size()));
+				sb.append("jal ").append(MScriptRuntime.destGotoLabel("__pop_params_" + args.size())).append(System.lineSeparator());
 			
 			sb.append("jal ").append(MScriptRuntime.destFunctionLabel(name)).append(System.lineSeparator());
 			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__pop_regs")).append(System.lineSeparator());

@@ -50,7 +50,6 @@ public class Precedence3Model extends AbstractModel {
 		private final Precedence4Model model;
 		
 		private Item(Operation operation, Precedence4Model model) {
-			Objects.requireNonNull(operation);
 			Objects.requireNonNull(model);
 			this.operation = operation;
 			this.model = model;
@@ -61,7 +60,8 @@ public class Precedence3Model extends AbstractModel {
 			var sb = new StringBuilder();
 			
 			sb.append(model.compile(ctx));
-			sb.append("jal ").append(MScriptRuntime.destGotoLabel(operation.toString())).append(System.lineSeparator());
+			if(operation != null)
+				sb.append("jal ").append(MScriptRuntime.destGotoLabel(operation.toString())).append(System.lineSeparator());
 			
 			return sb.toString();
 		}
