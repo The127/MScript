@@ -21,6 +21,7 @@ public class ScriptModel implements IScriptContext {
 	
 	private FunctionModel mainFunction;
 	private List<FunctionModel> functions = new LinkedList<>();
+	private Map<String, FunctionModel> fMap = new HashMap<>();
 	
 	private FunctionModel currentCompileFunction = null;
 	
@@ -64,15 +65,27 @@ public class ScriptModel implements IScriptContext {
 				mainFunction = function;
 		else
 			// check via list since we only will have very few functions
-			if(functions.stream().anyMatch(m  -> m.getName().equals(function.getName())))
+			if(fMap.containsKey(function.getName()))
 				throw new MScriptCompilationException("Duplicate function '" + function.getName() + "'.", function.getFileContext());
-			else
+			else {
 				functions.add(function);
+				fMap.put(function.getName(), function);
+			}
 	}
 
 	@Override
 	public String resolveRegister(String variableName, FileContext ctx) {
 		return currentCompileFunction.resolveRegister(variableName, ctx);
+	}
+
+	@Override
+	public boolean doesFunctionExist(String name) {
+		return fMap.containsKey(name);
+	}
+
+	@Override
+	public int getFunctionParameterCount(String name) {
+		return fMap.get(name).getParamCount();
 	}
 	
 	/**
@@ -86,12 +99,10 @@ public class ScriptModel implements IScriptContext {
 		
 		var sb = new StringBuilder();
 		
-		//TODO nulls
-		
-		sb.append(mainFunction.compile(null));
+		sb.append(mainFunction.compile(this));
 		for(var f : functions) {
 			currentCompileFunction = f;
-			sb.append(f.compile(null));
+			sb.append(f.compile(this));
 		}
 		
 		// find function with most variables and create modular/optimized runtime
