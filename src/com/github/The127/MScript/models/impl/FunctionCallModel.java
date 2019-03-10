@@ -52,7 +52,7 @@ public class FunctionCallModel extends ExpressionModel {
 				throw compilerError("Unknown function '" + name + "'.");
 			
 			// handle actual function call
-			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__push_regs")).append(System.lineSeparator());
+			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__push_registers")).append(System.lineSeparator());
 			
 			// check argument count
 			if(args.size() != ctx.getFunctionParameterCount(name)) 
@@ -64,7 +64,7 @@ public class FunctionCallModel extends ExpressionModel {
 				sb.append("jal ").append(MScriptRuntime.destGotoLabel("__pop_params_" + args.size())).append(System.lineSeparator());
 			
 			sb.append("jal ").append(MScriptRuntime.destFunctionLabel(name)).append(System.lineSeparator());
-			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__pop_regs")).append(System.lineSeparator());
+			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__pop_registers")).append(System.lineSeparator());
 		}
 		return sb.toString();
 	}
