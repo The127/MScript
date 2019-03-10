@@ -32,15 +32,27 @@ public class FunctionCallModel extends ExpressionModel {
 	public String compile(IScriptContext ctx) {
 		var sb = new StringBuilder();
 		
-		sb.append("jal ").append(MScriptRuntime.destGotoLabel("__push_regs")).append(System.lineSeparator());
-		
-		for(var arg : args)
-			sb.append(arg.compile(ctx));
-		if(args.size() > 0)
-			sb.append(MScriptRuntime.destGotoLabel("__pop_params_" + args.size()));
-		
-		sb.append("jal ").append(MScriptRuntime.destFunctionLabel(name)).append(System.lineSeparator());
-		sb.append("jal ").append(MScriptRuntime.destGotoLabel("__pop_regs")).append(System.lineSeparator());
+		// check if rt function or not
+		if(MScriptRuntime.isRtFunctionName(name)) {
+			// handle rt function (cheaper to call)
+			
+			// check argument count
+			if(args.size() != MScriptRuntime.getParametersForRtFunction(name, getFileContext())) 
+				throw compilerError("Too many arguments for runtime function '" + name + "'.");
+			
+			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__" + name));
+		}else {
+			// handle actual function call
+			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__push_regs")).append(System.lineSeparator());
+			
+			for(var arg : args)
+				sb.append(arg.compile(ctx));
+			if(args.size() > 0)
+				sb.append(MScriptRuntime.destGotoLabel("__pop_params_" + args.size()));
+			
+			sb.append("jal ").append(MScriptRuntime.destFunctionLabel(name)).append(System.lineSeparator());
+			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__pop_regs")).append(System.lineSeparator());
+		}
 		return sb.toString();
 	}
 

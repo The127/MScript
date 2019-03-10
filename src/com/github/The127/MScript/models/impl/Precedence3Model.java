@@ -9,6 +9,7 @@ import java.util.Objects;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.ICompilableModel;
 import com.github.The127.MScript.models.IScriptContext;
+import com.github.The127.MScript.rt.MScriptRuntime;
 
 public class Precedence3Model extends AbstractModel {
 
@@ -44,7 +45,7 @@ public class Precedence3Model extends AbstractModel {
 			var sb = new StringBuilder();
 			
 			sb.append(model.compile(ctx));
-			sb.append("jal ").append(operation.toString()).append(System.lineSeparator());
+			sb.append("jal ").append(MScriptRuntime.destGotoLabel(operation.toString())).append(System.lineSeparator());
 			
 			return sb.toString();
 		}

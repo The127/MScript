@@ -366,6 +366,15 @@ public final class MScriptRuntime {
 	 */
 	public static String destGotoLabel(String name) {
 		switch(name) {
+		case "__and":
+			isAndUsed = true;
+			break;
+		case "__or":
+			isOrUsed = true;
+			break;
+		case "__xor":
+			isXorUsed = true;
+			break;
 		case "__condition":
 			isConditionEvaluated = true;
 			break;
