@@ -8,7 +8,8 @@ public class LabelResolver {
 
 	private Map<String, Integer> sourceLabels = new HashMap<>();
 	
-	public void resolveLabels(String pseudoCompiledCode) {
+	public String resolveLabels(String pseudoCompiledCode) {
+		pseudoCompiledCode = pseudoCompiledCode.replaceAll("(?m)^[ \t]*\r?\n", "");
 		var code = new LinkedList<String>();
 		var lines = pseudoCompiledCode.split(System.lineSeparator());
 		int lineIndex = 0;
@@ -34,6 +35,6 @@ public class LabelResolver {
 				result.add(line);
 			}
 		});
-		result.forEach(System.out::println);
+		return result.stream().reduce("", (s1, s2) -> s1+System.lineSeparator()+s2).replaceAll("(?m)^[ \t]*\r?\n", "");
 	}
 }

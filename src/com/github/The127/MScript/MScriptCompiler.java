@@ -19,7 +19,8 @@ public class MScriptCompiler {
 		var parser = new MScriptParser(tokens);
 		var visitor = new ScriptVisitor();
 		var model = visitor.visitScript(parser.script());
-		var pseudo = model.doCompile().replaceAll("(?m)^[ \t]*\r?\n", "");
-		new LabelResolver().resolveLabels(pseudo);
+		var pseudo = model.doCompile();
+		var compiled = new LabelResolver().resolveLabels(pseudo);
+		System.out.println(compiled);
 	}
 }
