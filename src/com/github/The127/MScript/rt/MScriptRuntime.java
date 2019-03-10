@@ -37,7 +37,16 @@ public final class MScriptRuntime {
 		isMulUsed = false,
 		isModUsed = false,
 		isNegateUsed = false,
-		isNotUsed = false;
+		isNotUsed = false,
+		isAndUsed = false,
+		isOrUsed = false,
+		isXorUsed = false,
+		isLessUsed = false,
+		isLessOrEqualUsed = false,
+		isGreaterUsed = false,
+		isGreaterOrEqualUsed = false,
+		isEqualUsed = false,
+		isNotEqualUsed = false;
 	
 	private static boolean
 		isFloorUsed = false,
@@ -55,7 +64,9 @@ public final class MScriptRuntime {
 	
 	private static boolean
 		isFunctionCalled = false,
-		isConditionEvaluated = false;
+		isConditionEvaluated = false,
+		isRetUsed = false,
+		isRetTrueFalseUsed = false;
 	
 	private static final List<String> rtFunctionNames = Arrays.asList(new String[]{
 		"floor",
@@ -116,6 +127,16 @@ public final class MScriptRuntime {
 		var sb = new StringBuilder();
 		
 		sb.append(createPushPopRegisters(registersUsed));
+		sb.append(less());
+		sb.append(lessOrEqual());
+		sb.append(greater());
+		sb.append(greaterOrEqual());
+		sb.append(equal());
+		sb.append(notEqual());
+		sb.append(retTrueFalse());
+		sb.append(and());
+		sb.append(or());
+		sb.append(xor());
 		sb.append(add());
 		sb.append(sub());
 		sb.append(mul());
@@ -199,6 +220,85 @@ public final class MScriptRuntime {
 			+ jRet();
 	}
 	
+	private static String compareOp(boolean isUsed, String operation) {
+		if(!isUsed)
+			return "";
+		return sourceGotoLabel("__" + operation) + System.lineSeparator() 
+			 + "pop r13" + System.lineSeparator()
+			 + "pop r12" + System.lineSeparator()
+			 + operation + " r12 r13 " + jTrue()
+			 + "j " + jFalse();
+	}
+	
+	private static String less() {
+		return compareOp(isLessUsed, "blt");
+	}
+	
+	private static String lessOrEqual() {
+		return compareOp(isLessOrEqualUsed, "ble");
+	}
+	
+	private static String greater() {
+		return compareOp(isGreaterUsed, "bgt");
+	}
+	
+	private static String greaterOrEqual() {
+		return compareOp(isGreaterOrEqualUsed, "bge");
+	}
+	
+	private static String equal() {
+		return compareOp(isEqualUsed, "beq");
+	}
+	
+	private static String notEqual() {
+		return compareOp(isNotEqualUsed, "bne");
+	}
+	
+	private static String jTrue() {
+		isRetTrueFalseUsed = true;
+		return destGotoLabel("__jTrue") + System.lineSeparator();
+	}
+	
+	private static String jFalse() {
+		isRetTrueFalseUsed = true;
+		return destGotoLabel("__jFalse") + System.lineSeparator();
+	}
+	
+	private static String retTrueFalse() {
+		if(!isRetTrueFalseUsed)
+			return "";
+		return sourceGotoLabel("__jTrue") + System.lineSeparator()
+			 + "push 1" + System.lineSeparator()
+			 + "j ra" + System.lineSeparator()
+			 + sourceGotoLabel("__jFalse") + System.lineSeparator()
+			 + "push 0" + System.lineSeparator()
+			 + "j ra" + System.lineSeparator();
+	}
+	
+	private static String twoOpLogic(boolean isUsed, String operation) {
+		if(!isUsed)
+			return "";
+		return 
+				"pop r13" + System.lineSeparator()
+			  + "pop r12" + System.lineSeparator()
+			  + "round r13 r13" + System.lineSeparator()
+			  + "round r12 r12" + System.lineSeparator()
+			  + operation + " r12 r12 r13" + System.lineSeparator()
+			  + jRet();
+	}
+	
+	private static String and() {
+		return twoOpLogic(isAndUsed, "and");
+	}
+	
+	private static String or() {
+		return twoOpLogic(isOrUsed, "or");
+	}
+	
+	private static String xor() {
+		return twoOpLogic(isXorUsed, "xor");
+	}
+	
 	private static String add() {
 		return twoOperator(isAddUsed, "add");
 	}
@@ -228,11 +328,21 @@ public final class MScriptRuntime {
 	}
 
 	private static String negate() {
-		return oneOperator(isNegateUsed, "negate");
+		if(!isNegateUsed)
+			return "";
+		return  "pop r12" + System.lineSeparator()
+			  + "sub r12 0 r12" + System.lineSeparator()
+			  + jRet();
 	}
 	
 	private static String not() {
-		return oneOperator(isNotUsed, "not");
+		if(!isNotUsed)
+			return "";
+		return "pop r12" + System.lineSeparator()
+			 + "round r12 r12" + System.lineSeparator()
+			 + "or r12 r12 0" + System.lineSeparator()
+			 + "sub r12 1 r12" + System.lineSeparator()
+			 + jRet();
 	}
 	
 	private static String floor() {
@@ -256,7 +366,12 @@ public final class MScriptRuntime {
 	}
 	
 	private static String bool() {
-		return oneOperator(isBoolUsed, "bool");
+		if(!isBoolUsed)
+			return "";
+		return "pop r12" + System.lineSeparator()
+			 + "round r12 r12" + System.lineSeparator()
+			 + "or r12 r12 0" + System.lineSeparator()
+			 + jRet();
 	}
 	
 	private static String rand() {
@@ -276,10 +391,13 @@ public final class MScriptRuntime {
 	}
 	
 	private static String jRet() {
+		isRetUsed = true;
 		return "j " + destGotoLabel("__ret") + System.lineSeparator();
 	}
 	
 	private static String ret() {
+		if(!isRetUsed)
+			return "";
 		// always add this since at least one runtime feature is used
 		return sourceGotoLabel("__ret") + System.lineSeparator()
 			// push result on stack before returning
@@ -333,6 +451,15 @@ public final class MScriptRuntime {
 	 */
 	public static String destGotoLabel(String name) {
 		switch(name) {
+		case "__and":
+			isAndUsed = true;
+			break;
+		case "__or":
+			isOrUsed = true;
+			break;
+		case "__xor":
+			isXorUsed = true;
+			break;
 		case "__condition":
 			isConditionEvaluated = true;
 			break;
