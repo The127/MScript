@@ -21,25 +21,77 @@ The following example is a basic solar angle automation script.
 def db as base;
 def d0 as SolarSensor;
 
-def $RotationDegrees = 100;
-def $SolarDegrees = 180;
+def $RotationDegrees as 100;
+def $SolarDegrees as 180;
 
-fn main() {
-    var angle;
-    loop {
-        read SolarSensor.SolarAngle into angle;
-        angle = calc(angle);
-        write angle into base.Setting;
-        yield;
-    }
+fn main (){
+	var winkel;
+	loop {
+		read SolarSensor.SolarAngle into winkel;
+		winkel = calc(winkel, 1);
+		write winkel into base.Setting;
+		yield;
+	}
 }
 
-fn calc(angle) {
-    var result;
-    result = angle * $RotationDegrees / $SolarDegrees;
-    return result;
+fn calc(winkel, b) {
+	var result;
+	result = winkel * $RotationDegrees / $SolarDegrees;
+	return result;
 }
 ```
+
+This will result in the following:
+```
+push ra
+l r4 d0 SolarAngle
+jal 25
+push r4
+push 1
+jal 22
+jal 12
+jal 31
+pop r4
+s db Setting r4
+yield
+j 1
+push ra
+push r0
+push 100.0
+jal 38
+push 180.0
+jal 42
+pop r4
+pop r14
+push r4
+j r14
+pop r1
+pop r0
+j ra
+push r0
+push r1
+push r2
+push r3
+push r4
+j ra
+pop r12
+pop r4
+pop r3
+pop r2
+pop r1
+pop r0
+j 45
+pop r13
+pop r12
+mul r12 r12 r13
+j 45
+pop r13
+pop r12
+div r12 r12 r13
+push r12
+j ra
+```
+
 Note that you still need to place your physical items accordingly.
 
 Examples can be found under the [examples folder](https://github.com/The127/MScript/tree/master/examples).

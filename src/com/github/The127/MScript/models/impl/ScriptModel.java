@@ -114,7 +114,9 @@ public class ScriptModel implements IScriptContext {
 		maxLocals = Integer.max(maxLocals, mainFunction.getLocalCount());
 		// only push-/pop-registers to theoretically_max_params + maxLocals
 		var registersUsed = FunctionModel.MAX_PARAMS + maxLocals;
-		sb.append(MScriptRuntime.createRuntime(registersUsed));
+		// get max actual params used
+		var maxParams = functions.stream().map(FunctionModel::getParamCount).reduce(0, Integer::max).intValue();
+		sb.append(MScriptRuntime.createRuntime(registersUsed, maxParams));
 		// remove any empty lines that might be inside the compiled file to reduce the line count
 		return sb.toString().replaceAll("(?m)^[ \t]*\r?\n", "");
 	}

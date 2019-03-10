@@ -19,7 +19,8 @@ public class FunctionVisitor extends MScriptBaseVisitor<FunctionModel> {
 				ctx.Identifier().getText());
 		
 		// arguments
-		visitParams(ctx.params());
+		if(ctx.params() != null)
+			visitParams(ctx.params());
 		visitFnBody(ctx.fnBody());
 		
 		return model;

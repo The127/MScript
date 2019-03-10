@@ -123,10 +123,10 @@ public final class MScriptRuntime {
 	 * @param registersUsed The amount of maximum registers used by function parameters and variables.
 	 * @return The runtime for the script.
 	 */
-	public static String createRuntime(int registersUsed) {
+	public static String createRuntime(int registersUsed, int maxParams) {
 		var sb = new StringBuilder();
 		
-		sb.append(createPushPopRegisters(registersUsed));
+		sb.append(createPushPopRegisters(registersUsed, maxParams));
 		sb.append(less());
 		sb.append(lessOrEqual());
 		sb.append(greater());
@@ -164,16 +164,15 @@ public final class MScriptRuntime {
 				.replace(jRet() + ret(), ret());
 	}
 
-	private static String createPushPopRegisters(int registersUsed) {
+	private static String createPushPopRegisters(int registersUsed, int maxParams) {
 		// dont add this to the runtime if it is not needed
 		if(!isFunctionCalled)
 			return "";
 		
 		var sb = new StringBuilder();
 		
-		int params = registersUsed - FunctionModel.MAX_LOCALS;
-		for(int i = params-1; i > 0; i--) {
-			sb.append(sourceGotoLabel("__pop_params_" + i)).append(System.lineSeparator());
+		for(int i = maxParams-1; i >= 0; i--) {
+			sb.append(sourceGotoLabel("__pop_params_" + (i+1))).append(System.lineSeparator());
 			sb.append("pop r" + i).append(System.lineSeparator());
 		}
 		sb.append("j ra").append(System.lineSeparator());
@@ -184,10 +183,10 @@ public final class MScriptRuntime {
 		// return
 		sb.append("j ra").append(System.lineSeparator());
 
-		sb.append(sourceGotoLabel("__push_registers")).append(System.lineSeparator());
+		sb.append(sourceGotoLabel("__pop_registers")).append(System.lineSeparator());
 		// save return value
-		sb.append("push r12").append(System.lineSeparator());
-		for(int i = registersUsed-1; i > 0; i--)
+		sb.append("pop r12").append(System.lineSeparator());
+		for(int i = registersUsed-1; i >= 0; i--)
 			sb.append("pop r" + i).append(System.lineSeparator());
 		sb.append(jRet());
 		return sb.toString();

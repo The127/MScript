@@ -60,7 +60,7 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 			throw new MScriptCompilationException("Duplicate variable and/or param name '" + local + "'.", ctx);
 		if(localCount >= MAX_LOCALS)
 			throw new MScriptCompilationException("Too many local variables (only " + MAX_LOCALS + " are allowed).", ctx);
-		locals.put(local, "r" + localCount++);
+		locals.put(local, "r" + (MAX_PARAMS + localCount++));
 	}
 	
 	public void addParam(String param, FileContext ctx) {
@@ -72,7 +72,7 @@ public class FunctionModel extends AbstractModel implements IFunctionContext {
 	}
 	
 	private boolean isUniqueName(String name) {
-		return locals.containsKey(name) || params.containsKey(name);
+		return !(locals.containsKey(name) || params.containsKey(name));
 	}
 
 	public void addStatement(StatementModel statement) {
