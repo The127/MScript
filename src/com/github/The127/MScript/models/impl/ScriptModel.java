@@ -14,6 +14,10 @@ import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.IScriptContext;
 import com.github.The127.MScript.rt.MScriptRuntime;
 
+/**
+ * This class represents the model of a MSript file.
+ * @author Julian Baehr
+ */
 public class ScriptModel implements IScriptContext {
 
 	private Map<String, String> aliases = new HashMap<>();

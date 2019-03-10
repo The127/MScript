@@ -13,6 +13,10 @@ import com.github.The127.MScript.models.ICompilableModel;
 import com.github.The127.MScript.models.IScriptContext;
 import com.github.The127.MScript.rt.MScriptRuntime;
 
+/**
+ * This class represents the precedence 5 operator expressions in the MScript language.
+ * @author Julian Baehr
+ */
 public class Precedence5Model extends AbstractModel {
 
 	public static enum Operation {

@@ -12,6 +12,10 @@ import com.github.The127.MScript.MScriptCompilationException;
 import com.github.The127.MScript.models.IScriptContext;
 import com.github.The127.MScript.rt.MScriptRuntime;
 
+/**
+ * This class represents a function call expression in the MScript language.
+ * @author Julian Baehr
+ */
 public class FunctionCallModel extends ExpressionModel {
 
 	private final String name;

@@ -11,6 +11,10 @@ import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 import com.github.The127.MScript.rt.MScriptRuntime;
 
+/**
+ * This class represents a conditional statement (if, elif, else) in the MScript language.
+ * @author Julian Baehr
+ */
 public class ConditionalStatementModel extends StatementModel  {
 
 	private List<ElifStatementModel> elifStatements = new LinkedList<>();

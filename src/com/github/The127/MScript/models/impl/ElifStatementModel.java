@@ -8,6 +8,10 @@ import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 import com.github.The127.MScript.rt.MScriptRuntime;
 
+/**
+ * This class represents an elif block in the MScript language.
+ * @author Julian Baehr
+ */
 public class ElifStatementModel extends AbstractModel {
 
 	private ExpressionModel condition;

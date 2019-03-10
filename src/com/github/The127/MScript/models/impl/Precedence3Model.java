@@ -11,6 +11,10 @@ import com.github.The127.MScript.models.ICompilableModel;
 import com.github.The127.MScript.models.IScriptContext;
 import com.github.The127.MScript.rt.MScriptRuntime;
 
+/**
+ * This class represents a precedence 3 operator expression in the MScript language.
+ * @author Julian Baehr
+ */
 public class Precedence3Model extends AbstractModel {
 
 	public static enum Operation {

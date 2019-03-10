@@ -8,6 +8,10 @@ import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 import com.github.The127.MScript.rt.MScriptRuntime;
 
+/**
+ * This class represents a loop statement in the MScript language.
+ * @author Julian Baehr
+ */
 public class LoopStatementModel extends StatementModel  {
 
 	private final String label = "__loop__" + MScriptRuntime.generateLabelName();

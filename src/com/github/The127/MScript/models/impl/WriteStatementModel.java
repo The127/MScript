@@ -7,6 +7,10 @@ package com.github.The127.MScript.models.impl;
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.models.IScriptContext;
 
+/**
+ * This class represents a write statement in the MScript language.
+ * @author Julian Baehr
+ */
 public class WriteStatementModel extends StatementModel {
 
 	private final String device, target, variable;
