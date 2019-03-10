@@ -19,7 +19,7 @@ import com.github.The127.MScript.rt.MScriptRuntime;
  * This class represents a precedence 1 operator expression in the MScript language.
  * @author Julian Baehr
  */
-public class EvalExpressionModel extends AbstractModel {
+public class EvalExpressionModel extends ExpressionModel {
 
 	public static enum Operation {
 		and{
