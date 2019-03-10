@@ -39,7 +39,8 @@ public class FunctionCallModel extends ExpressionModel {
 			// check argument count
 			if(args.size() != MScriptRuntime.getParametersForRtFunction(name, getFileContext())) 
 				throw compilerError("Too many arguments for runtime function '" + name + "'.");
-			
+			for(var arg : args)
+				sb.append(arg.compile(ctx));
 			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__" + name));
 		}else {
 			// handle actual function call
