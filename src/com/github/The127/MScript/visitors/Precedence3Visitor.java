@@ -12,10 +12,13 @@ public class Precedence3Visitor extends MScriptBaseVisitor<Precedence3Model>{
 		var model = new Precedence3Model(new FileContext(ctx.getStart().getLine(), ctx.getText()));
 
 		var subModel = new Precedence4Visitor().visit(ctx.precedence4());
-		model.setFirst(Precedence3Model.Operation.fromString(
-								ctx.precedence3Operators().getText(), 
-								model.getFileContext()), 
-						subModel);
+		if(ctx.precedence3Operators() != null)
+			model.setFirst(Precedence3Model.Operation.fromString(
+									ctx.precedence3Operators().getText(), 
+									model.getFileContext()), 
+							subModel);
+		else
+			model.setFirst(null, subModel);
 	
 		return model;
 	}

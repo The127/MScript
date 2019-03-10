@@ -1,4 +1,4 @@
-// Generated from MScript.g4 by ANTLR 4.4
+// Generated from MScript.g4 by ANTLR 4.7.1
 
 package com.github.The127.MScript.antlr;
 
@@ -13,28 +13,20 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class MScriptParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.4", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.7.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__42=1, T__41=2, T__40=3, T__39=4, T__38=5, T__37=6, T__36=7, T__35=8, 
-		T__34=9, T__33=10, T__32=11, T__31=12, T__30=13, T__29=14, T__28=15, T__27=16, 
-		T__26=17, T__25=18, T__24=19, T__23=20, T__22=21, T__21=22, T__20=23, 
-		T__19=24, T__18=25, T__17=26, T__16=27, T__15=28, T__14=29, T__13=30, 
-		T__12=31, T__11=32, T__10=33, T__9=34, T__8=35, T__7=36, T__6=37, T__5=38, 
-		T__4=39, T__3=40, T__2=41, T__1=42, T__0=43, Number=44, Integer=45, Device=46, 
-		Const=47, Identifier=48, BLOCK_COMMENT=49, LINE_COMMENT=50, WS=51;
-	public static final String[] tokenNames = {
-		"<INVALID>", "'/'", "'fine'", "'as'", "'def'", "'return'", "'!='", "'slot'", 
-		"'reagent'", "'while'", "'{'", "';'", "'='", "'}'", "'^'", "'if'", "'<='", 
-		"'&'", "'sleep'", "'('", "'is'", "'yield'", "'*'", "'this'", "','", "'.'", 
-		"'var'", "'write'", "'>='", "'=='", "'<'", "'|'", "'elif'", "'>'", "'loop'", 
-		"'!'", "'fn'", "'%'", "'into'", "'read'", "'else'", "')'", "'+'", "'-'", 
-		"Number", "Integer", "Device", "Const", "Identifier", "BLOCK_COMMENT", 
-		"LINE_COMMENT", "WS"
-	};
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
+		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
+		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
+		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
+		T__38=39, T__39=40, T__40=41, T__41=42, T__42=43, Number=44, Integer=45, 
+		Device=46, Const=47, Identifier=48, BLOCK_COMMENT=49, LINE_COMMENT=50, 
+		WS=51;
 	public static final int
 		RULE_script = 0, RULE_alias = 1, RULE_constant = 2, RULE_function = 3, 
 		RULE_params = 4, RULE_fnBody = 5, RULE_varDeclaration = 6, RULE_statement = 7, 
@@ -61,11 +53,55 @@ public class MScriptParser extends Parser {
 		"precedence5Operators", "atom", "variable"
 	};
 
-	@Override
-	public String getGrammarFileName() { return "MScript.g4"; }
+	private static final String[] _LITERAL_NAMES = {
+		null, "'def'", "'as'", "';'", "'fn'", "'('", "')'", "','", "'{'", "'}'", 
+		"'var'", "'loop'", "'while'", "'if'", "'elif'", "'else'", "'='", "'read'", 
+		"'.'", "'into'", "'reagent'", "'slot'", "'write'", "'yield'", "'sleep'", 
+		"'return'", "'this'", "'is'", "'fine'", "'&'", "'|'", "'^'", "'<'", "'>'", 
+		"'>='", "'<='", "'=='", "'!='", "'-'", "'!'", "'+'", "'*'", "'/'", "'%'"
+	};
+	private static final String[] _SYMBOLIC_NAMES = {
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, null, null, null, null, null, "Number", "Integer", "Device", 
+		"Const", "Identifier", "BLOCK_COMMENT", "LINE_COMMENT", "WS"
+	};
+	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
+
+	/**
+	 * @deprecated Use {@link #VOCABULARY} instead.
+	 */
+	@Deprecated
+	public static final String[] tokenNames;
+	static {
+		tokenNames = new String[_SYMBOLIC_NAMES.length];
+		for (int i = 0; i < tokenNames.length; i++) {
+			tokenNames[i] = VOCABULARY.getLiteralName(i);
+			if (tokenNames[i] == null) {
+				tokenNames[i] = VOCABULARY.getSymbolicName(i);
+			}
+
+			if (tokenNames[i] == null) {
+				tokenNames[i] = "<INVALID>";
+			}
+		}
+	}
 
 	@Override
-	public String[] getTokenNames() { return tokenNames; }
+	@Deprecated
+	public String[] getTokenNames() {
+		return tokenNames;
+	}
+
+	@Override
+
+	public Vocabulary getVocabulary() {
+		return VOCABULARY;
+	}
+
+	@Override
+	public String getGrammarFileName() { return "MScript.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -81,23 +117,23 @@ public class MScriptParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 	public static class ScriptContext extends ParserRuleContext {
-		public List<ConstantContext> constant() {
-			return getRuleContexts(ConstantContext.class);
-		}
 		public List<AliasContext> alias() {
 			return getRuleContexts(AliasContext.class);
 		}
 		public AliasContext alias(int i) {
 			return getRuleContext(AliasContext.class,i);
 		}
-		public FunctionContext function(int i) {
-			return getRuleContext(FunctionContext.class,i);
+		public List<ConstantContext> constant() {
+			return getRuleContexts(ConstantContext.class);
 		}
 		public ConstantContext constant(int i) {
 			return getRuleContext(ConstantContext.class,i);
 		}
 		public List<FunctionContext> function() {
 			return getRuleContexts(FunctionContext.class);
+		}
+		public FunctionContext function(int i) {
+			return getRuleContext(FunctionContext.class,i);
 		}
 		public ScriptContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -125,7 +161,8 @@ public class MScriptParser extends Parser {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(84); alias();
+					setState(84);
+					alias();
 					}
 					} 
 				}
@@ -136,10 +173,11 @@ public class MScriptParser extends Parser {
 			setState(93);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__39) {
+			while (_la==T__0) {
 				{
 				{
-				setState(90); constant();
+				setState(90);
+				constant();
 				}
 				}
 				setState(95);
@@ -149,10 +187,11 @@ public class MScriptParser extends Parser {
 			setState(99);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__7) {
+			while (_la==T__3) {
 				{
 				{
-				setState(96); function();
+				setState(96);
+				function();
 				}
 				}
 				setState(101);
@@ -192,11 +231,16 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(102); match(T__39);
-			setState(103); match(Device);
-			setState(104); match(T__40);
-			setState(105); match(Identifier);
-			setState(106); match(T__32);
+			setState(102);
+			match(T__0);
+			setState(103);
+			match(Device);
+			setState(104);
+			match(T__1);
+			setState(105);
+			match(Identifier);
+			setState(106);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -211,8 +255,8 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class ConstantContext extends ParserRuleContext {
-		public TerminalNode Number() { return getToken(MScriptParser.Number, 0); }
 		public TerminalNode Const() { return getToken(MScriptParser.Const, 0); }
+		public TerminalNode Number() { return getToken(MScriptParser.Number, 0); }
 		public ConstantContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -230,11 +274,16 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(108); match(T__39);
-			setState(109); match(Const);
-			setState(110); match(T__40);
-			setState(111); match(Number);
-			setState(112); match(T__32);
+			setState(108);
+			match(T__0);
+			setState(109);
+			match(Const);
+			setState(110);
+			match(T__1);
+			setState(111);
+			match(Number);
+			setState(112);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -250,11 +299,11 @@ public class MScriptParser extends Parser {
 
 	public static class FunctionContext extends ParserRuleContext {
 		public TerminalNode Identifier() { return getToken(MScriptParser.Identifier, 0); }
-		public ParamsContext params() {
-			return getRuleContext(ParamsContext.class,0);
-		}
 		public FnBodyContext fnBody() {
 			return getRuleContext(FnBodyContext.class,0);
+		}
+		public ParamsContext params() {
+			return getRuleContext(ParamsContext.class,0);
 		}
 		public FunctionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -274,19 +323,26 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(114); match(T__7);
-			setState(115); match(Identifier);
-			setState(116); match(T__24);
+			setState(114);
+			match(T__3);
+			setState(115);
+			match(Identifier);
+			setState(116);
+			match(T__4);
 			setState(118);
+			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==Identifier) {
 				{
-				setState(117); params();
+				setState(117);
+				params();
 				}
 			}
 
-			setState(120); match(T__2);
-			setState(121); fnBody();
+			setState(120);
+			match(T__5);
+			setState(121);
+			fnBody();
 			}
 		}
 		catch (RecognitionException re) {
@@ -323,15 +379,18 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(123); match(Identifier);
+			setState(123);
+			match(Identifier);
 			setState(128);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__19) {
+			while (_la==T__6) {
 				{
 				{
-				setState(124); match(T__19);
-				setState(125); match(Identifier);
+				setState(124);
+				match(T__6);
+				setState(125);
+				match(Identifier);
 				}
 				}
 				setState(130);
@@ -355,14 +414,14 @@ public class MScriptParser extends Parser {
 		public List<VarDeclarationContext> varDeclaration() {
 			return getRuleContexts(VarDeclarationContext.class);
 		}
-		public StatementContext statement(int i) {
-			return getRuleContext(StatementContext.class,i);
+		public VarDeclarationContext varDeclaration(int i) {
+			return getRuleContext(VarDeclarationContext.class,i);
 		}
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
 		}
-		public VarDeclarationContext varDeclaration(int i) {
-			return getRuleContext(VarDeclarationContext.class,i);
+		public StatementContext statement(int i) {
+			return getRuleContext(StatementContext.class,i);
 		}
 		public FnBodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -382,14 +441,16 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(131); match(T__33);
+			setState(131);
+			match(T__7);
 			setState(135);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__17) {
+			while (_la==T__9) {
 				{
 				{
-				setState(132); varDeclaration();
+				setState(132);
+				varDeclaration();
 				}
 				}
 				setState(137);
@@ -399,17 +460,19 @@ public class MScriptParser extends Parser {
 			setState(141);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__38) | (1L << T__28) | (1L << T__25) | (1L << T__22) | (1L << T__20) | (1L << T__16) | (1L << T__9) | (1L << T__4) | (1L << Identifier))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__10) | (1L << T__12) | (1L << T__16) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << Identifier))) != 0)) {
 				{
 				{
-				setState(138); statement();
+				setState(138);
+				statement();
 				}
 				}
 				setState(143);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(144); match(T__30);
+			setState(144);
+			match(T__8);
 			}
 		}
 		catch (RecognitionException re) {
@@ -446,23 +509,28 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(146); match(T__17);
-			setState(147); match(Identifier);
+			setState(146);
+			match(T__9);
+			setState(147);
+			match(Identifier);
 			setState(152);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__19) {
+			while (_la==T__6) {
 				{
 				{
-				setState(148); match(T__19);
-				setState(149); match(Identifier);
+				setState(148);
+				match(T__6);
+				setState(149);
+				match(Identifier);
 				}
 				}
 				setState(154);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(155); match(T__32);
+			setState(155);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -477,35 +545,35 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class StatementContext extends ParserRuleContext {
-		public AssignmentStatementContext assignmentStatement() {
-			return getRuleContext(AssignmentStatementContext.class,0);
-		}
-		public YieldStatementContext yieldStatement() {
-			return getRuleContext(YieldStatementContext.class,0);
-		}
 		public LoopStatementContext loopStatement() {
 			return getRuleContext(LoopStatementContext.class,0);
-		}
-		public ReadStatementContext readStatement() {
-			return getRuleContext(ReadStatementContext.class,0);
-		}
-		public ThisIsFineStatementContext thisIsFineStatement() {
-			return getRuleContext(ThisIsFineStatementContext.class,0);
-		}
-		public FnCallStatementContext fnCallStatement() {
-			return getRuleContext(FnCallStatementContext.class,0);
 		}
 		public ConditionalStatementContext conditionalStatement() {
 			return getRuleContext(ConditionalStatementContext.class,0);
 		}
-		public SleepStatementContext sleepStatement() {
-			return getRuleContext(SleepStatementContext.class,0);
+		public AssignmentStatementContext assignmentStatement() {
+			return getRuleContext(AssignmentStatementContext.class,0);
+		}
+		public ReadStatementContext readStatement() {
+			return getRuleContext(ReadStatementContext.class,0);
 		}
 		public WriteStatementContext writeStatement() {
 			return getRuleContext(WriteStatementContext.class,0);
 		}
+		public YieldStatementContext yieldStatement() {
+			return getRuleContext(YieldStatementContext.class,0);
+		}
+		public SleepStatementContext sleepStatement() {
+			return getRuleContext(SleepStatementContext.class,0);
+		}
 		public ReturnStatementContext returnStatement() {
 			return getRuleContext(ReturnStatementContext.class,0);
+		}
+		public FnCallStatementContext fnCallStatement() {
+			return getRuleContext(FnCallStatementContext.class,0);
+		}
+		public ThisIsFineStatementContext thisIsFineStatement() {
+			return getRuleContext(ThisIsFineStatementContext.class,0);
 		}
 		public StatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -523,65 +591,76 @@ public class MScriptParser extends Parser {
 		enterRule(_localctx, 14, RULE_statement);
 		try {
 			setState(167);
+			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(157); loopStatement();
+				setState(157);
+				loopStatement();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(158); conditionalStatement();
+				setState(158);
+				conditionalStatement();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(159); assignmentStatement();
+				setState(159);
+				assignmentStatement();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(160); readStatement();
+				setState(160);
+				readStatement();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(161); writeStatement();
+				setState(161);
+				writeStatement();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(162); yieldStatement();
+				setState(162);
+				yieldStatement();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(163); sleepStatement();
+				setState(163);
+				sleepStatement();
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(164); returnStatement();
+				setState(164);
+				returnStatement();
 				}
 				break;
 			case 9:
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(165); fnCallStatement();
+				setState(165);
+				fnCallStatement();
 				}
 				break;
 			case 10:
 				enterOuterAlt(_localctx, 10);
 				{
-				setState(166); thisIsFineStatement();
+				setState(166);
+				thisIsFineStatement();
 				}
 				break;
 			}
@@ -598,11 +677,11 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class LoopStatementContext extends ParserRuleContext {
-		public WhileConditionContext whileCondition() {
-			return getRuleContext(WhileConditionContext.class,0);
-		}
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
+		}
+		public WhileConditionContext whileCondition() {
+			return getRuleContext(WhileConditionContext.class,0);
 		}
 		public LoopStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -622,16 +701,20 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(169); match(T__9);
+			setState(169);
+			match(T__10);
 			setState(171);
+			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==T__34) {
+			if (_la==T__11) {
 				{
-				setState(170); whileCondition();
+				setState(170);
+				whileCondition();
 				}
 			}
 
-			setState(173); block();
+			setState(173);
+			block();
 			}
 		}
 		catch (RecognitionException re) {
@@ -666,10 +749,14 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(175); match(T__34);
-			setState(176); match(T__24);
-			setState(177); expression();
-			setState(178); match(T__2);
+			setState(175);
+			match(T__11);
+			setState(176);
+			match(T__4);
+			setState(177);
+			expression();
+			setState(178);
+			match(T__5);
 			}
 		}
 		catch (RecognitionException re) {
@@ -684,20 +771,20 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class ConditionalStatementContext extends ParserRuleContext {
-		public ElseStatementContext elseStatement() {
-			return getRuleContext(ElseStatementContext.class,0);
-		}
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
+		public List<ElifStatementContext> elifStatement() {
+			return getRuleContexts(ElifStatementContext.class);
+		}
 		public ElifStatementContext elifStatement(int i) {
 			return getRuleContext(ElifStatementContext.class,i);
 		}
-		public List<ElifStatementContext> elifStatement() {
-			return getRuleContexts(ElifStatementContext.class);
+		public ElseStatementContext elseStatement() {
+			return getRuleContext(ElseStatementContext.class,0);
 		}
 		public ConditionalStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -717,18 +804,24 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(180); match(T__28);
-			setState(181); match(T__24);
-			setState(182); expression();
-			setState(183); match(T__2);
-			setState(184); block();
+			setState(180);
+			match(T__12);
+			setState(181);
+			match(T__4);
+			setState(182);
+			expression();
+			setState(183);
+			match(T__5);
+			setState(184);
+			block();
 			setState(188);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__11) {
+			while (_la==T__13) {
 				{
 				{
-				setState(185); elifStatement();
+				setState(185);
+				elifStatement();
 				}
 				}
 				setState(190);
@@ -736,10 +829,12 @@ public class MScriptParser extends Parser {
 				_la = _input.LA(1);
 			}
 			setState(192);
+			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==T__3) {
+			if (_la==T__14) {
 				{
-				setState(191); elseStatement();
+				setState(191);
+				elseStatement();
 				}
 			}
 
@@ -780,11 +875,16 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(194); match(T__11);
-			setState(195); match(T__24);
-			setState(196); expression();
-			setState(197); match(T__2);
-			setState(198); block();
+			setState(194);
+			match(T__13);
+			setState(195);
+			match(T__4);
+			setState(196);
+			expression();
+			setState(197);
+			match(T__5);
+			setState(198);
+			block();
 			}
 		}
 		catch (RecognitionException re) {
@@ -819,8 +919,10 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(200); match(T__3);
-			setState(201); block();
+			setState(200);
+			match(T__14);
+			setState(201);
+			block();
 			}
 		}
 		catch (RecognitionException re) {
@@ -856,10 +958,14 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(203); match(Identifier);
-			setState(204); match(T__31);
-			setState(205); expression();
-			setState(206); match(T__32);
+			setState(203);
+			match(Identifier);
+			setState(204);
+			match(T__15);
+			setState(205);
+			expression();
+			setState(206);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -874,11 +980,11 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class ReadStatementContext extends ParserRuleContext {
-		public ReadReagentContext readReagent() {
-			return getRuleContext(ReadReagentContext.class,0);
-		}
 		public ReadBasicContext readBasic() {
 			return getRuleContext(ReadBasicContext.class,0);
+		}
+		public ReadReagentContext readReagent() {
+			return getRuleContext(ReadReagentContext.class,0);
 		}
 		public ReadSlotContext readSlot() {
 			return getRuleContext(ReadSlotContext.class,0);
@@ -899,23 +1005,27 @@ public class MScriptParser extends Parser {
 		enterRule(_localctx, 28, RULE_readStatement);
 		try {
 			setState(211);
+			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(208); readBasic();
+				setState(208);
+				readBasic();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(209); readReagent();
+				setState(209);
+				readReagent();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(210); readSlot();
+				setState(210);
+				readSlot();
 				}
 				break;
 			}
@@ -956,13 +1066,20 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(213); match(T__4);
-			setState(214); ((ReadBasicContext)_localctx).dev = match(Identifier);
-			setState(215); match(T__18);
-			setState(216); ((ReadBasicContext)_localctx).target = match(Identifier);
-			setState(217); match(T__5);
-			setState(218); ((ReadBasicContext)_localctx).id = match(Identifier);
-			setState(219); match(T__32);
+			setState(213);
+			match(T__16);
+			setState(214);
+			((ReadBasicContext)_localctx).dev = match(Identifier);
+			setState(215);
+			match(T__17);
+			setState(216);
+			((ReadBasicContext)_localctx).target = match(Identifier);
+			setState(217);
+			match(T__18);
+			setState(218);
+			((ReadBasicContext)_localctx).id = match(Identifier);
+			setState(219);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1002,16 +1119,26 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(221); match(T__4);
-			setState(222); match(T__35);
-			setState(223); ((ReadReagentContext)_localctx).dev = match(Identifier);
-			setState(224); match(T__18);
-			setState(225); ((ReadReagentContext)_localctx).reagentMode = match(Identifier);
-			setState(226); match(T__18);
-			setState(227); ((ReadReagentContext)_localctx).reagent = match(Identifier);
-			setState(228); match(T__5);
-			setState(229); ((ReadReagentContext)_localctx).var = match(Identifier);
-			setState(230); match(T__32);
+			setState(221);
+			match(T__16);
+			setState(222);
+			match(T__19);
+			setState(223);
+			((ReadReagentContext)_localctx).dev = match(Identifier);
+			setState(224);
+			match(T__17);
+			setState(225);
+			((ReadReagentContext)_localctx).reagentMode = match(Identifier);
+			setState(226);
+			match(T__17);
+			setState(227);
+			((ReadReagentContext)_localctx).reagent = match(Identifier);
+			setState(228);
+			match(T__18);
+			setState(229);
+			((ReadReagentContext)_localctx).var = match(Identifier);
+			setState(230);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1052,16 +1179,26 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(232); match(T__4);
-			setState(233); match(T__36);
-			setState(234); ((ReadSlotContext)_localctx).dev = match(Identifier);
-			setState(235); match(T__18);
-			setState(236); ((ReadSlotContext)_localctx).slotNumber = match(Integer);
-			setState(237); match(T__18);
-			setState(238); ((ReadSlotContext)_localctx).target = match(Identifier);
-			setState(239); match(T__5);
-			setState(240); ((ReadSlotContext)_localctx).var = match(Identifier);
-			setState(241); match(T__32);
+			setState(232);
+			match(T__16);
+			setState(233);
+			match(T__20);
+			setState(234);
+			((ReadSlotContext)_localctx).dev = match(Identifier);
+			setState(235);
+			match(T__17);
+			setState(236);
+			((ReadSlotContext)_localctx).slotNumber = match(Integer);
+			setState(237);
+			match(T__17);
+			setState(238);
+			((ReadSlotContext)_localctx).target = match(Identifier);
+			setState(239);
+			match(T__18);
+			setState(240);
+			((ReadSlotContext)_localctx).var = match(Identifier);
+			setState(241);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1100,13 +1237,20 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(243); match(T__16);
-			setState(244); ((WriteStatementContext)_localctx).id = match(Identifier);
-			setState(245); match(T__5);
-			setState(246); ((WriteStatementContext)_localctx).dev = match(Identifier);
-			setState(247); match(T__18);
-			setState(248); ((WriteStatementContext)_localctx).target = match(Identifier);
-			setState(249); match(T__32);
+			setState(243);
+			match(T__21);
+			setState(244);
+			((WriteStatementContext)_localctx).id = match(Identifier);
+			setState(245);
+			match(T__18);
+			setState(246);
+			((WriteStatementContext)_localctx).dev = match(Identifier);
+			setState(247);
+			match(T__17);
+			setState(248);
+			((WriteStatementContext)_localctx).target = match(Identifier);
+			setState(249);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1138,8 +1282,10 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(251); match(T__22);
-			setState(252); match(T__32);
+			setState(251);
+			match(T__22);
+			setState(252);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1176,17 +1322,20 @@ public class MScriptParser extends Parser {
 		enterRule(_localctx, 40, RULE_sleepStatement);
 		try {
 			setState(256);
+			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(254); sleepHardcoded();
+				setState(254);
+				sleepHardcoded();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(255); sleepVar();
+				setState(255);
+				sleepVar();
 				}
 				break;
 			}
@@ -1221,9 +1370,12 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(258); match(T__25);
-			setState(259); match(Number);
-			setState(260); match(T__32);
+			setState(258);
+			match(T__23);
+			setState(259);
+			match(Number);
+			setState(260);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1258,9 +1410,12 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(262); match(T__25);
-			setState(263); expression();
-			setState(264); match(T__32);
+			setState(262);
+			match(T__23);
+			setState(263);
+			expression();
+			setState(264);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1296,16 +1451,20 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(266); match(T__38);
+			setState(266);
+			match(T__24);
 			setState(268);
+			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__24) | (1L << T__8) | (1L << T__0) | (1L << Number) | (1L << Const) | (1L << Identifier))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__37) | (1L << T__38) | (1L << Number) | (1L << Const) | (1L << Identifier))) != 0)) {
 				{
-				setState(267); expression();
+				setState(267);
+				expression();
 				}
 			}
 
-			setState(270); match(T__32);
+			setState(270);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1337,10 +1496,14 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(272); match(T__20);
-			setState(273); match(T__23);
-			setState(274); match(T__41);
-			setState(275); match(T__32);
+			setState(272);
+			match(T__25);
+			setState(273);
+			match(T__26);
+			setState(274);
+			match(T__27);
+			setState(275);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1375,8 +1538,10 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(277); functionCall();
-			setState(278); match(T__32);
+			setState(277);
+			functionCall();
+			setState(278);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1391,11 +1556,11 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class BlockContext extends ParserRuleContext {
-		public StatementContext statement(int i) {
-			return getRuleContext(StatementContext.class,i);
-		}
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
+		}
+		public StatementContext statement(int i) {
+			return getRuleContext(StatementContext.class,i);
 		}
 		public BlockContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1415,21 +1580,24 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(280); match(T__33);
+			setState(280);
+			match(T__7);
 			setState(284);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__38) | (1L << T__28) | (1L << T__25) | (1L << T__22) | (1L << T__20) | (1L << T__16) | (1L << T__9) | (1L << T__4) | (1L << Identifier))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__10) | (1L << T__12) | (1L << T__16) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << Identifier))) != 0)) {
 				{
 				{
-				setState(281); statement();
+				setState(281);
+				statement();
 				}
 				}
 				setState(286);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(287); match(T__30);
+			setState(287);
+			match(T__8);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1466,17 +1634,20 @@ public class MScriptParser extends Parser {
 		enterRule(_localctx, 54, RULE_expression);
 		try {
 			setState(291);
+			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(289); functionCall();
+				setState(289);
+				functionCall();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(290); evalExpression();
+				setState(290);
+				evalExpression();
 				}
 				break;
 			}
@@ -1515,17 +1686,22 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(293); match(Identifier);
-			setState(294); match(T__24);
+			setState(293);
+			match(Identifier);
+			setState(294);
+			match(T__4);
 			setState(296);
+			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__24) | (1L << T__8) | (1L << T__0) | (1L << Number) | (1L << Const) | (1L << Identifier))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__37) | (1L << T__38) | (1L << Number) | (1L << Const) | (1L << Identifier))) != 0)) {
 				{
-				setState(295); args();
+				setState(295);
+				args();
 				}
 			}
 
-			setState(298); match(T__2);
+			setState(298);
+			match(T__5);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1540,11 +1716,11 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class ArgsContext extends ParserRuleContext {
-		public ExpressionContext expression(int i) {
-			return getRuleContext(ExpressionContext.class,i);
-		}
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
 		}
 		public ArgsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1564,15 +1740,18 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(300); expression();
+			setState(300);
+			expression();
 			setState(305);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__19) {
+			while (_la==T__6) {
 				{
 				{
-				setState(301); match(T__19);
-				setState(302); expression();
+				setState(301);
+				match(T__6);
+				setState(302);
+				expression();
 				}
 				}
 				setState(307);
@@ -1593,17 +1772,17 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class EvalExpressionContext extends ParserRuleContext {
-		public List<Precedence1OperatorsContext> precedence1Operators() {
-			return getRuleContexts(Precedence1OperatorsContext.class);
-		}
-		public Precedence1OperatorsContext precedence1Operators(int i) {
-			return getRuleContext(Precedence1OperatorsContext.class,i);
-		}
 		public List<Precedence2Context> precedence2() {
 			return getRuleContexts(Precedence2Context.class);
 		}
 		public Precedence2Context precedence2(int i) {
 			return getRuleContext(Precedence2Context.class,i);
+		}
+		public List<Precedence1OperatorsContext> precedence1Operators() {
+			return getRuleContexts(Precedence1OperatorsContext.class);
+		}
+		public Precedence1OperatorsContext precedence1Operators(int i) {
+			return getRuleContext(Precedence1OperatorsContext.class,i);
 		}
 		public EvalExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1623,15 +1802,18 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(308); precedence2();
+			setState(308);
+			precedence2();
 			setState(314);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__29) | (1L << T__26) | (1L << T__12))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__28) | (1L << T__29) | (1L << T__30))) != 0)) {
 				{
 				{
-				setState(309); precedence1Operators();
-				setState(310); precedence2();
+				setState(309);
+				precedence1Operators();
+				setState(310);
+				precedence2();
 				}
 				}
 				setState(316);
@@ -1672,10 +1854,14 @@ public class MScriptParser extends Parser {
 			{
 			setState(317);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__29) | (1L << T__26) | (1L << T__12))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__28) | (1L << T__29) | (1L << T__30))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
-			consume();
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -1693,14 +1879,14 @@ public class MScriptParser extends Parser {
 		public List<Precedence3Context> precedence3() {
 			return getRuleContexts(Precedence3Context.class);
 		}
+		public Precedence3Context precedence3(int i) {
+			return getRuleContext(Precedence3Context.class,i);
+		}
 		public List<Precedence2OperatorsContext> precedence2Operators() {
 			return getRuleContexts(Precedence2OperatorsContext.class);
 		}
 		public Precedence2OperatorsContext precedence2Operators(int i) {
 			return getRuleContext(Precedence2OperatorsContext.class,i);
-		}
-		public Precedence3Context precedence3(int i) {
-			return getRuleContext(Precedence3Context.class,i);
 		}
 		public Precedence2Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1720,15 +1906,18 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(319); precedence3();
+			setState(319);
+			precedence3();
 			setState(325);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__37) | (1L << T__27) | (1L << T__15) | (1L << T__14) | (1L << T__13) | (1L << T__10))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << T__35) | (1L << T__36))) != 0)) {
 				{
 				{
-				setState(320); precedence2Operators();
-				setState(321); precedence3();
+				setState(320);
+				precedence2Operators();
+				setState(321);
+				precedence3();
 				}
 				}
 				setState(327);
@@ -1769,10 +1958,14 @@ public class MScriptParser extends Parser {
 			{
 			setState(328);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__37) | (1L << T__27) | (1L << T__15) | (1L << T__14) | (1L << T__13) | (1L << T__10))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34) | (1L << T__35) | (1L << T__36))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
-			consume();
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -1812,14 +2005,17 @@ public class MScriptParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(331);
+			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==T__8 || _la==T__0) {
+			if (_la==T__37 || _la==T__38) {
 				{
-				setState(330); precedence3Operators();
+				setState(330);
+				precedence3Operators();
 				}
 			}
 
-			setState(333); precedence4();
+			setState(333);
+			precedence4();
 			}
 		}
 		catch (RecognitionException re) {
@@ -1854,10 +2050,14 @@ public class MScriptParser extends Parser {
 			{
 			setState(335);
 			_la = _input.LA(1);
-			if ( !(_la==T__8 || _la==T__0) ) {
+			if ( !(_la==T__37 || _la==T__38) ) {
 			_errHandler.recoverInline(this);
 			}
-			consume();
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -1872,14 +2072,14 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class Precedence4Context extends ParserRuleContext {
-		public List<Precedence4OperatorsContext> precedence4Operators() {
-			return getRuleContexts(Precedence4OperatorsContext.class);
-		}
 		public List<Precedence5Context> precedence5() {
 			return getRuleContexts(Precedence5Context.class);
 		}
 		public Precedence5Context precedence5(int i) {
 			return getRuleContext(Precedence5Context.class,i);
+		}
+		public List<Precedence4OperatorsContext> precedence4Operators() {
+			return getRuleContexts(Precedence4OperatorsContext.class);
 		}
 		public Precedence4OperatorsContext precedence4Operators(int i) {
 			return getRuleContext(Precedence4OperatorsContext.class,i);
@@ -1902,15 +2102,18 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(337); precedence5();
+			setState(337);
+			precedence5();
 			setState(343);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__1 || _la==T__0) {
+			while (_la==T__37 || _la==T__39) {
 				{
 				{
-				setState(338); precedence4Operators();
-				setState(339); precedence5();
+				setState(338);
+				precedence4Operators();
+				setState(339);
+				precedence5();
 				}
 				}
 				setState(345);
@@ -1951,10 +2154,14 @@ public class MScriptParser extends Parser {
 			{
 			setState(346);
 			_la = _input.LA(1);
-			if ( !(_la==T__1 || _la==T__0) ) {
+			if ( !(_la==T__37 || _la==T__39) ) {
 			_errHandler.recoverInline(this);
 			}
-			consume();
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -1969,6 +2176,9 @@ public class MScriptParser extends Parser {
 	}
 
 	public static class Precedence5Context extends ParserRuleContext {
+		public List<AtomContext> atom() {
+			return getRuleContexts(AtomContext.class);
+		}
 		public AtomContext atom(int i) {
 			return getRuleContext(AtomContext.class,i);
 		}
@@ -1977,9 +2187,6 @@ public class MScriptParser extends Parser {
 		}
 		public Precedence5OperatorsContext precedence5Operators(int i) {
 			return getRuleContext(Precedence5OperatorsContext.class,i);
-		}
-		public List<AtomContext> atom() {
-			return getRuleContexts(AtomContext.class);
 		}
 		public Precedence5Context(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1999,15 +2206,18 @@ public class MScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(348); atom();
+			setState(348);
+			atom();
 			setState(354);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__42) | (1L << T__21) | (1L << T__6))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__40) | (1L << T__41) | (1L << T__42))) != 0)) {
 				{
 				{
-				setState(349); precedence5Operators();
-				setState(350); atom();
+				setState(349);
+				precedence5Operators();
+				setState(350);
+				atom();
 				}
 				}
 				setState(356);
@@ -2048,10 +2258,14 @@ public class MScriptParser extends Parser {
 			{
 			setState(357);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__42) | (1L << T__21) | (1L << T__6))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__40) | (1L << T__41) | (1L << T__42))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
-			consume();
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -2067,11 +2281,11 @@ public class MScriptParser extends Parser {
 
 	public static class AtomContext extends ParserRuleContext {
 		public TerminalNode Number() { return getToken(MScriptParser.Number, 0); }
-		public ExpressionContext expression() {
-			return getRuleContext(ExpressionContext.class,0);
-		}
 		public VariableContext variable() {
 			return getRuleContext(VariableContext.class,0);
+		}
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
 		}
 		public AtomContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2089,26 +2303,32 @@ public class MScriptParser extends Parser {
 		enterRule(_localctx, 80, RULE_atom);
 		try {
 			setState(365);
+			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case Number:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(359); match(Number);
+				setState(359);
+				match(Number);
 				}
 				break;
 			case Const:
 			case Identifier:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(360); variable();
+				setState(360);
+				variable();
 				}
 				break;
-			case T__24:
+			case T__4:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(361); match(T__24);
-				setState(362); expression();
-				setState(363); match(T__2);
+				setState(361);
+				match(T__4);
+				setState(362);
+				expression();
+				setState(363);
+				match(T__5);
 				}
 				break;
 			default:
@@ -2152,7 +2372,11 @@ public class MScriptParser extends Parser {
 			if ( !(_la==Const || _la==Identifier) ) {
 			_errHandler.recoverInline(this);
 			}
-			consume();
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -2167,7 +2391,7 @@ public class MScriptParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\65\u0174\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\65\u0174\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -2194,82 +2418,82 @@ public class MScriptParser extends Parser {
 		"\13\"\3#\3#\3$\5$\u014e\n$\3$\3$\3%\3%\3&\3&\3&\3&\7&\u0158\n&\f&\16&"+
 		"\u015b\13&\3\'\3\'\3(\3(\3(\3(\7(\u0163\n(\f(\16(\u0166\13(\3)\3)\3*\3"+
 		"*\3*\3*\3*\3*\5*\u0170\n*\3+\3+\3+\2\2,\2\4\6\b\n\f\16\20\22\24\26\30"+
-		"\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRT\2\b\5\2\20\20\23\23!!\6"+
-		"\2\b\b\22\22\36 ##\4\2%%--\3\2,-\5\2\3\3\30\30\'\'\3\2\61\62\u016c\2Y"+
-		"\3\2\2\2\4h\3\2\2\2\6n\3\2\2\2\bt\3\2\2\2\n}\3\2\2\2\f\u0085\3\2\2\2\16"+
-		"\u0094\3\2\2\2\20\u00a9\3\2\2\2\22\u00ab\3\2\2\2\24\u00b1\3\2\2\2\26\u00b6"+
-		"\3\2\2\2\30\u00c4\3\2\2\2\32\u00ca\3\2\2\2\34\u00cd\3\2\2\2\36\u00d5\3"+
-		"\2\2\2 \u00d7\3\2\2\2\"\u00df\3\2\2\2$\u00ea\3\2\2\2&\u00f5\3\2\2\2(\u00fd"+
-		"\3\2\2\2*\u0102\3\2\2\2,\u0104\3\2\2\2.\u0108\3\2\2\2\60\u010c\3\2\2\2"+
-		"\62\u0112\3\2\2\2\64\u0117\3\2\2\2\66\u011a\3\2\2\28\u0125\3\2\2\2:\u0127"+
-		"\3\2\2\2<\u012e\3\2\2\2>\u0136\3\2\2\2@\u013f\3\2\2\2B\u0141\3\2\2\2D"+
-		"\u014a\3\2\2\2F\u014d\3\2\2\2H\u0151\3\2\2\2J\u0153\3\2\2\2L\u015c\3\2"+
-		"\2\2N\u015e\3\2\2\2P\u0167\3\2\2\2R\u016f\3\2\2\2T\u0171\3\2\2\2VX\5\4"+
-		"\3\2WV\3\2\2\2X[\3\2\2\2YW\3\2\2\2YZ\3\2\2\2Z_\3\2\2\2[Y\3\2\2\2\\^\5"+
-		"\6\4\2]\\\3\2\2\2^a\3\2\2\2_]\3\2\2\2_`\3\2\2\2`e\3\2\2\2a_\3\2\2\2bd"+
-		"\5\b\5\2cb\3\2\2\2dg\3\2\2\2ec\3\2\2\2ef\3\2\2\2f\3\3\2\2\2ge\3\2\2\2"+
-		"hi\7\6\2\2ij\7\60\2\2jk\7\5\2\2kl\7\62\2\2lm\7\r\2\2m\5\3\2\2\2no\7\6"+
-		"\2\2op\7\61\2\2pq\7\5\2\2qr\7.\2\2rs\7\r\2\2s\7\3\2\2\2tu\7&\2\2uv\7\62"+
-		"\2\2vx\7\25\2\2wy\5\n\6\2xw\3\2\2\2xy\3\2\2\2yz\3\2\2\2z{\7+\2\2{|\5\f"+
-		"\7\2|\t\3\2\2\2}\u0082\7\62\2\2~\177\7\32\2\2\177\u0081\7\62\2\2\u0080"+
-		"~\3\2\2\2\u0081\u0084\3\2\2\2\u0082\u0080\3\2\2\2\u0082\u0083\3\2\2\2"+
-		"\u0083\13\3\2\2\2\u0084\u0082\3\2\2\2\u0085\u0089\7\f\2\2\u0086\u0088"+
-		"\5\16\b\2\u0087\u0086\3\2\2\2\u0088\u008b\3\2\2\2\u0089\u0087\3\2\2\2"+
-		"\u0089\u008a\3\2\2\2\u008a\u008f\3\2\2\2\u008b\u0089\3\2\2\2\u008c\u008e"+
-		"\5\20\t\2\u008d\u008c\3\2\2\2\u008e\u0091\3\2\2\2\u008f\u008d\3\2\2\2"+
-		"\u008f\u0090\3\2\2\2\u0090\u0092\3\2\2\2\u0091\u008f\3\2\2\2\u0092\u0093"+
-		"\7\17\2\2\u0093\r\3\2\2\2\u0094\u0095\7\34\2\2\u0095\u009a\7\62\2\2\u0096"+
-		"\u0097\7\32\2\2\u0097\u0099\7\62\2\2\u0098\u0096\3\2\2\2\u0099\u009c\3"+
-		"\2\2\2\u009a\u0098\3\2\2\2\u009a\u009b\3\2\2\2\u009b\u009d\3\2\2\2\u009c"+
-		"\u009a\3\2\2\2\u009d\u009e\7\r\2\2\u009e\17\3\2\2\2\u009f\u00aa\5\22\n"+
-		"\2\u00a0\u00aa\5\26\f\2\u00a1\u00aa\5\34\17\2\u00a2\u00aa\5\36\20\2\u00a3"+
-		"\u00aa\5&\24\2\u00a4\u00aa\5(\25\2\u00a5\u00aa\5*\26\2\u00a6\u00aa\5\60"+
-		"\31\2\u00a7\u00aa\5\64\33\2\u00a8\u00aa\5\62\32\2\u00a9\u009f\3\2\2\2"+
-		"\u00a9\u00a0\3\2\2\2\u00a9\u00a1\3\2\2\2\u00a9\u00a2\3\2\2\2\u00a9\u00a3"+
-		"\3\2\2\2\u00a9\u00a4\3\2\2\2\u00a9\u00a5\3\2\2\2\u00a9\u00a6\3\2\2\2\u00a9"+
-		"\u00a7\3\2\2\2\u00a9\u00a8\3\2\2\2\u00aa\21\3\2\2\2\u00ab\u00ad\7$\2\2"+
-		"\u00ac\u00ae\5\24\13\2\u00ad\u00ac\3\2\2\2\u00ad\u00ae\3\2\2\2\u00ae\u00af"+
-		"\3\2\2\2\u00af\u00b0\5\66\34\2\u00b0\23\3\2\2\2\u00b1\u00b2\7\13\2\2\u00b2"+
-		"\u00b3\7\25\2\2\u00b3\u00b4\58\35\2\u00b4\u00b5\7+\2\2\u00b5\25\3\2\2"+
-		"\2\u00b6\u00b7\7\21\2\2\u00b7\u00b8\7\25\2\2\u00b8\u00b9\58\35\2\u00b9"+
-		"\u00ba\7+\2\2\u00ba\u00be\5\66\34\2\u00bb\u00bd\5\30\r\2\u00bc\u00bb\3"+
-		"\2\2\2\u00bd\u00c0\3\2\2\2\u00be\u00bc\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf"+
-		"\u00c2\3\2\2\2\u00c0\u00be\3\2\2\2\u00c1\u00c3\5\32\16\2\u00c2\u00c1\3"+
-		"\2\2\2\u00c2\u00c3\3\2\2\2\u00c3\27\3\2\2\2\u00c4\u00c5\7\"\2\2\u00c5"+
-		"\u00c6\7\25\2\2\u00c6\u00c7\58\35\2\u00c7\u00c8\7+\2\2\u00c8\u00c9\5\66"+
-		"\34\2\u00c9\31\3\2\2\2\u00ca\u00cb\7*\2\2\u00cb\u00cc\5\66\34\2\u00cc"+
-		"\33\3\2\2\2\u00cd\u00ce\7\62\2\2\u00ce\u00cf\7\16\2\2\u00cf\u00d0\58\35"+
-		"\2\u00d0\u00d1\7\r\2\2\u00d1\35\3\2\2\2\u00d2\u00d6\5 \21\2\u00d3\u00d6"+
-		"\5\"\22\2\u00d4\u00d6\5$\23\2\u00d5\u00d2\3\2\2\2\u00d5\u00d3\3\2\2\2"+
-		"\u00d5\u00d4\3\2\2\2\u00d6\37\3\2\2\2\u00d7\u00d8\7)\2\2\u00d8\u00d9\7"+
-		"\62\2\2\u00d9\u00da\7\33\2\2\u00da\u00db\7\62\2\2\u00db\u00dc\7(\2\2\u00dc"+
-		"\u00dd\7\62\2\2\u00dd\u00de\7\r\2\2\u00de!\3\2\2\2\u00df\u00e0\7)\2\2"+
-		"\u00e0\u00e1\7\n\2\2\u00e1\u00e2\7\62\2\2\u00e2\u00e3\7\33\2\2\u00e3\u00e4"+
-		"\7\62\2\2\u00e4\u00e5\7\33\2\2\u00e5\u00e6\7\62\2\2\u00e6\u00e7\7(\2\2"+
-		"\u00e7\u00e8\7\62\2\2\u00e8\u00e9\7\r\2\2\u00e9#\3\2\2\2\u00ea\u00eb\7"+
-		")\2\2\u00eb\u00ec\7\t\2\2\u00ec\u00ed\7\62\2\2\u00ed\u00ee\7\33\2\2\u00ee"+
-		"\u00ef\7/\2\2\u00ef\u00f0\7\33\2\2\u00f0\u00f1\7\62\2\2\u00f1\u00f2\7"+
-		"(\2\2\u00f2\u00f3\7\62\2\2\u00f3\u00f4\7\r\2\2\u00f4%\3\2\2\2\u00f5\u00f6"+
-		"\7\35\2\2\u00f6\u00f7\7\62\2\2\u00f7\u00f8\7(\2\2\u00f8\u00f9\7\62\2\2"+
-		"\u00f9\u00fa\7\33\2\2\u00fa\u00fb\7\62\2\2\u00fb\u00fc\7\r\2\2\u00fc\'"+
-		"\3\2\2\2\u00fd\u00fe\7\27\2\2\u00fe\u00ff\7\r\2\2\u00ff)\3\2\2\2\u0100"+
+		"\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRT\2\b\3\2\37!\3\2\"\'\3\2"+
+		"()\4\2((**\3\2+-\3\2\61\62\2\u016c\2Y\3\2\2\2\4h\3\2\2\2\6n\3\2\2\2\b"+
+		"t\3\2\2\2\n}\3\2\2\2\f\u0085\3\2\2\2\16\u0094\3\2\2\2\20\u00a9\3\2\2\2"+
+		"\22\u00ab\3\2\2\2\24\u00b1\3\2\2\2\26\u00b6\3\2\2\2\30\u00c4\3\2\2\2\32"+
+		"\u00ca\3\2\2\2\34\u00cd\3\2\2\2\36\u00d5\3\2\2\2 \u00d7\3\2\2\2\"\u00df"+
+		"\3\2\2\2$\u00ea\3\2\2\2&\u00f5\3\2\2\2(\u00fd\3\2\2\2*\u0102\3\2\2\2,"+
+		"\u0104\3\2\2\2.\u0108\3\2\2\2\60\u010c\3\2\2\2\62\u0112\3\2\2\2\64\u0117"+
+		"\3\2\2\2\66\u011a\3\2\2\28\u0125\3\2\2\2:\u0127\3\2\2\2<\u012e\3\2\2\2"+
+		">\u0136\3\2\2\2@\u013f\3\2\2\2B\u0141\3\2\2\2D\u014a\3\2\2\2F\u014d\3"+
+		"\2\2\2H\u0151\3\2\2\2J\u0153\3\2\2\2L\u015c\3\2\2\2N\u015e\3\2\2\2P\u0167"+
+		"\3\2\2\2R\u016f\3\2\2\2T\u0171\3\2\2\2VX\5\4\3\2WV\3\2\2\2X[\3\2\2\2Y"+
+		"W\3\2\2\2YZ\3\2\2\2Z_\3\2\2\2[Y\3\2\2\2\\^\5\6\4\2]\\\3\2\2\2^a\3\2\2"+
+		"\2_]\3\2\2\2_`\3\2\2\2`e\3\2\2\2a_\3\2\2\2bd\5\b\5\2cb\3\2\2\2dg\3\2\2"+
+		"\2ec\3\2\2\2ef\3\2\2\2f\3\3\2\2\2ge\3\2\2\2hi\7\3\2\2ij\7\60\2\2jk\7\4"+
+		"\2\2kl\7\62\2\2lm\7\5\2\2m\5\3\2\2\2no\7\3\2\2op\7\61\2\2pq\7\4\2\2qr"+
+		"\7.\2\2rs\7\5\2\2s\7\3\2\2\2tu\7\6\2\2uv\7\62\2\2vx\7\7\2\2wy\5\n\6\2"+
+		"xw\3\2\2\2xy\3\2\2\2yz\3\2\2\2z{\7\b\2\2{|\5\f\7\2|\t\3\2\2\2}\u0082\7"+
+		"\62\2\2~\177\7\t\2\2\177\u0081\7\62\2\2\u0080~\3\2\2\2\u0081\u0084\3\2"+
+		"\2\2\u0082\u0080\3\2\2\2\u0082\u0083\3\2\2\2\u0083\13\3\2\2\2\u0084\u0082"+
+		"\3\2\2\2\u0085\u0089\7\n\2\2\u0086\u0088\5\16\b\2\u0087\u0086\3\2\2\2"+
+		"\u0088\u008b\3\2\2\2\u0089\u0087\3\2\2\2\u0089\u008a\3\2\2\2\u008a\u008f"+
+		"\3\2\2\2\u008b\u0089\3\2\2\2\u008c\u008e\5\20\t\2\u008d\u008c\3\2\2\2"+
+		"\u008e\u0091\3\2\2\2\u008f\u008d\3\2\2\2\u008f\u0090\3\2\2\2\u0090\u0092"+
+		"\3\2\2\2\u0091\u008f\3\2\2\2\u0092\u0093\7\13\2\2\u0093\r\3\2\2\2\u0094"+
+		"\u0095\7\f\2\2\u0095\u009a\7\62\2\2\u0096\u0097\7\t\2\2\u0097\u0099\7"+
+		"\62\2\2\u0098\u0096\3\2\2\2\u0099\u009c\3\2\2\2\u009a\u0098\3\2\2\2\u009a"+
+		"\u009b\3\2\2\2\u009b\u009d\3\2\2\2\u009c\u009a\3\2\2\2\u009d\u009e\7\5"+
+		"\2\2\u009e\17\3\2\2\2\u009f\u00aa\5\22\n\2\u00a0\u00aa\5\26\f\2\u00a1"+
+		"\u00aa\5\34\17\2\u00a2\u00aa\5\36\20\2\u00a3\u00aa\5&\24\2\u00a4\u00aa"+
+		"\5(\25\2\u00a5\u00aa\5*\26\2\u00a6\u00aa\5\60\31\2\u00a7\u00aa\5\64\33"+
+		"\2\u00a8\u00aa\5\62\32\2\u00a9\u009f\3\2\2\2\u00a9\u00a0\3\2\2\2\u00a9"+
+		"\u00a1\3\2\2\2\u00a9\u00a2\3\2\2\2\u00a9\u00a3\3\2\2\2\u00a9\u00a4\3\2"+
+		"\2\2\u00a9\u00a5\3\2\2\2\u00a9\u00a6\3\2\2\2\u00a9\u00a7\3\2\2\2\u00a9"+
+		"\u00a8\3\2\2\2\u00aa\21\3\2\2\2\u00ab\u00ad\7\r\2\2\u00ac\u00ae\5\24\13"+
+		"\2\u00ad\u00ac\3\2\2\2\u00ad\u00ae\3\2\2\2\u00ae\u00af\3\2\2\2\u00af\u00b0"+
+		"\5\66\34\2\u00b0\23\3\2\2\2\u00b1\u00b2\7\16\2\2\u00b2\u00b3\7\7\2\2\u00b3"+
+		"\u00b4\58\35\2\u00b4\u00b5\7\b\2\2\u00b5\25\3\2\2\2\u00b6\u00b7\7\17\2"+
+		"\2\u00b7\u00b8\7\7\2\2\u00b8\u00b9\58\35\2\u00b9\u00ba\7\b\2\2\u00ba\u00be"+
+		"\5\66\34\2\u00bb\u00bd\5\30\r\2\u00bc\u00bb\3\2\2\2\u00bd\u00c0\3\2\2"+
+		"\2\u00be\u00bc\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf\u00c2\3\2\2\2\u00c0\u00be"+
+		"\3\2\2\2\u00c1\u00c3\5\32\16\2\u00c2\u00c1\3\2\2\2\u00c2\u00c3\3\2\2\2"+
+		"\u00c3\27\3\2\2\2\u00c4\u00c5\7\20\2\2\u00c5\u00c6\7\7\2\2\u00c6\u00c7"+
+		"\58\35\2\u00c7\u00c8\7\b\2\2\u00c8\u00c9\5\66\34\2\u00c9\31\3\2\2\2\u00ca"+
+		"\u00cb\7\21\2\2\u00cb\u00cc\5\66\34\2\u00cc\33\3\2\2\2\u00cd\u00ce\7\62"+
+		"\2\2\u00ce\u00cf\7\22\2\2\u00cf\u00d0\58\35\2\u00d0\u00d1\7\5\2\2\u00d1"+
+		"\35\3\2\2\2\u00d2\u00d6\5 \21\2\u00d3\u00d6\5\"\22\2\u00d4\u00d6\5$\23"+
+		"\2\u00d5\u00d2\3\2\2\2\u00d5\u00d3\3\2\2\2\u00d5\u00d4\3\2\2\2\u00d6\37"+
+		"\3\2\2\2\u00d7\u00d8\7\23\2\2\u00d8\u00d9\7\62\2\2\u00d9\u00da\7\24\2"+
+		"\2\u00da\u00db\7\62\2\2\u00db\u00dc\7\25\2\2\u00dc\u00dd\7\62\2\2\u00dd"+
+		"\u00de\7\5\2\2\u00de!\3\2\2\2\u00df\u00e0\7\23\2\2\u00e0\u00e1\7\26\2"+
+		"\2\u00e1\u00e2\7\62\2\2\u00e2\u00e3\7\24\2\2\u00e3\u00e4\7\62\2\2\u00e4"+
+		"\u00e5\7\24\2\2\u00e5\u00e6\7\62\2\2\u00e6\u00e7\7\25\2\2\u00e7\u00e8"+
+		"\7\62\2\2\u00e8\u00e9\7\5\2\2\u00e9#\3\2\2\2\u00ea\u00eb\7\23\2\2\u00eb"+
+		"\u00ec\7\27\2\2\u00ec\u00ed\7\62\2\2\u00ed\u00ee\7\24\2\2\u00ee\u00ef"+
+		"\7/\2\2\u00ef\u00f0\7\24\2\2\u00f0\u00f1\7\62\2\2\u00f1\u00f2\7\25\2\2"+
+		"\u00f2\u00f3\7\62\2\2\u00f3\u00f4\7\5\2\2\u00f4%\3\2\2\2\u00f5\u00f6\7"+
+		"\30\2\2\u00f6\u00f7\7\62\2\2\u00f7\u00f8\7\25\2\2\u00f8\u00f9\7\62\2\2"+
+		"\u00f9\u00fa\7\24\2\2\u00fa\u00fb\7\62\2\2\u00fb\u00fc\7\5\2\2\u00fc\'"+
+		"\3\2\2\2\u00fd\u00fe\7\31\2\2\u00fe\u00ff\7\5\2\2\u00ff)\3\2\2\2\u0100"+
 		"\u0103\5,\27\2\u0101\u0103\5.\30\2\u0102\u0100\3\2\2\2\u0102\u0101\3\2"+
-		"\2\2\u0103+\3\2\2\2\u0104\u0105\7\24\2\2\u0105\u0106\7.\2\2\u0106\u0107"+
-		"\7\r\2\2\u0107-\3\2\2\2\u0108\u0109\7\24\2\2\u0109\u010a\58\35\2\u010a"+
-		"\u010b\7\r\2\2\u010b/\3\2\2\2\u010c\u010e\7\7\2\2\u010d\u010f\58\35\2"+
+		"\2\2\u0103+\3\2\2\2\u0104\u0105\7\32\2\2\u0105\u0106\7.\2\2\u0106\u0107"+
+		"\7\5\2\2\u0107-\3\2\2\2\u0108\u0109\7\32\2\2\u0109\u010a\58\35\2\u010a"+
+		"\u010b\7\5\2\2\u010b/\3\2\2\2\u010c\u010e\7\33\2\2\u010d\u010f\58\35\2"+
 		"\u010e\u010d\3\2\2\2\u010e\u010f\3\2\2\2\u010f\u0110\3\2\2\2\u0110\u0111"+
-		"\7\r\2\2\u0111\61\3\2\2\2\u0112\u0113\7\31\2\2\u0113\u0114\7\26\2\2\u0114"+
-		"\u0115\7\4\2\2\u0115\u0116\7\r\2\2\u0116\63\3\2\2\2\u0117\u0118\5:\36"+
-		"\2\u0118\u0119\7\r\2\2\u0119\65\3\2\2\2\u011a\u011e\7\f\2\2\u011b\u011d"+
+		"\7\5\2\2\u0111\61\3\2\2\2\u0112\u0113\7\34\2\2\u0113\u0114\7\35\2\2\u0114"+
+		"\u0115\7\36\2\2\u0115\u0116\7\5\2\2\u0116\63\3\2\2\2\u0117\u0118\5:\36"+
+		"\2\u0118\u0119\7\5\2\2\u0119\65\3\2\2\2\u011a\u011e\7\n\2\2\u011b\u011d"+
 		"\5\20\t\2\u011c\u011b\3\2\2\2\u011d\u0120\3\2\2\2\u011e\u011c\3\2\2\2"+
 		"\u011e\u011f\3\2\2\2\u011f\u0121\3\2\2\2\u0120\u011e\3\2\2\2\u0121\u0122"+
-		"\7\17\2\2\u0122\67\3\2\2\2\u0123\u0126\5:\36\2\u0124\u0126\5> \2\u0125"+
+		"\7\13\2\2\u0122\67\3\2\2\2\u0123\u0126\5:\36\2\u0124\u0126\5> \2\u0125"+
 		"\u0123\3\2\2\2\u0125\u0124\3\2\2\2\u01269\3\2\2\2\u0127\u0128\7\62\2\2"+
-		"\u0128\u012a\7\25\2\2\u0129\u012b\5<\37\2\u012a\u0129\3\2\2\2\u012a\u012b"+
-		"\3\2\2\2\u012b\u012c\3\2\2\2\u012c\u012d\7+\2\2\u012d;\3\2\2\2\u012e\u0133"+
-		"\58\35\2\u012f\u0130\7\32\2\2\u0130\u0132\58\35\2\u0131\u012f\3\2\2\2"+
-		"\u0132\u0135\3\2\2\2\u0133\u0131\3\2\2\2\u0133\u0134\3\2\2\2\u0134=\3"+
-		"\2\2\2\u0135\u0133\3\2\2\2\u0136\u013c\5B\"\2\u0137\u0138\5@!\2\u0138"+
+		"\u0128\u012a\7\7\2\2\u0129\u012b\5<\37\2\u012a\u0129\3\2\2\2\u012a\u012b"+
+		"\3\2\2\2\u012b\u012c\3\2\2\2\u012c\u012d\7\b\2\2\u012d;\3\2\2\2\u012e"+
+		"\u0133\58\35\2\u012f\u0130\7\t\2\2\u0130\u0132\58\35\2\u0131\u012f\3\2"+
+		"\2\2\u0132\u0135\3\2\2\2\u0133\u0131\3\2\2\2\u0133\u0134\3\2\2\2\u0134"+
+		"=\3\2\2\2\u0135\u0133\3\2\2\2\u0136\u013c\5B\"\2\u0137\u0138\5@!\2\u0138"+
 		"\u0139\5B\"\2\u0139\u013b\3\2\2\2\u013a\u0137\3\2\2\2\u013b\u013e\3\2"+
 		"\2\2\u013c\u013a\3\2\2\2\u013c\u013d\3\2\2\2\u013d?\3\2\2\2\u013e\u013c"+
 		"\3\2\2\2\u013f\u0140\t\2\2\2\u0140A\3\2\2\2\u0141\u0147\5F$\2\u0142\u0143"+
@@ -2284,12 +2508,12 @@ public class MScriptParser extends Parser {
 		"\2\2\u015e\u0164\5R*\2\u015f\u0160\5P)\2\u0160\u0161\5R*\2\u0161\u0163"+
 		"\3\2\2\2\u0162\u015f\3\2\2\2\u0163\u0166\3\2\2\2\u0164\u0162\3\2\2\2\u0164"+
 		"\u0165\3\2\2\2\u0165O\3\2\2\2\u0166\u0164\3\2\2\2\u0167\u0168\t\6\2\2"+
-		"\u0168Q\3\2\2\2\u0169\u0170\7.\2\2\u016a\u0170\5T+\2\u016b\u016c\7\25"+
-		"\2\2\u016c\u016d\58\35\2\u016d\u016e\7+\2\2\u016e\u0170\3\2\2\2\u016f"+
-		"\u0169\3\2\2\2\u016f\u016a\3\2\2\2\u016f\u016b\3\2\2\2\u0170S\3\2\2\2"+
-		"\u0171\u0172\t\7\2\2\u0172U\3\2\2\2\33Y_ex\u0082\u0089\u008f\u009a\u00a9"+
-		"\u00ad\u00be\u00c2\u00d5\u0102\u010e\u011e\u0125\u012a\u0133\u013c\u0147"+
-		"\u014d\u0159\u0164\u016f";
+		"\u0168Q\3\2\2\2\u0169\u0170\7.\2\2\u016a\u0170\5T+\2\u016b\u016c\7\7\2"+
+		"\2\u016c\u016d\58\35\2\u016d\u016e\7\b\2\2\u016e\u0170\3\2\2\2\u016f\u0169"+
+		"\3\2\2\2\u016f\u016a\3\2\2\2\u016f\u016b\3\2\2\2\u0170S\3\2\2\2\u0171"+
+		"\u0172\t\7\2\2\u0172U\3\2\2\2\33Y_ex\u0082\u0089\u008f\u009a\u00a9\u00ad"+
+		"\u00be\u00c2\u00d5\u0102\u010e\u011e\u0125\u012a\u0133\u013c\u0147\u014d"+
+		"\u0159\u0164\u016f";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
