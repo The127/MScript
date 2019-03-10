@@ -66,8 +66,7 @@ public final class MScriptRuntime {
 		isFunctionCalled = false,
 		isConditionEvaluated = false,
 		isRetUsed = false,
-		isRetTrueUsed = false,
-		isRetFalseUsed = false;
+		isRetTrueFalseUsed = false;
 	
 	private static final List<String> rtFunctionNames = Arrays.asList(new String[]{
 		"floor",
@@ -128,6 +127,13 @@ public final class MScriptRuntime {
 		var sb = new StringBuilder();
 		
 		sb.append(createPushPopRegisters(registersUsed));
+		sb.append(less());
+		sb.append(lessOrEqual());
+		sb.append(greater());
+		sb.append(greaterOrEqual());
+		sb.append(equal());
+		sb.append(notEqual());
+		sb.append(retTrueFalse());
 		sb.append(and());
 		sb.append(or());
 		sb.append(xor());
@@ -214,12 +220,59 @@ public final class MScriptRuntime {
 			+ jRet();
 	}
 	
-	private static String less() {
-		return "pop r13" + System.lineSeparator()
+	private static String compareOp(boolean isUsed, String operation) {
+		if(!isUsed)
+			return "";
+		return sourceGotoLabel("__" + operation) + System.lineSeparator() 
+			 + "pop r13" + System.lineSeparator()
 			 + "pop r12" + System.lineSeparator()
-			 + "sub r12 r12 r13" + System.lineSeparator()
-			 + ""
-			 + jRet();
+			 + operation + " r12 r13 " + jTrue()
+			 + "j " + jFalse();
+	}
+	
+	private static String less() {
+		return compareOp(isLessUsed, "blt");
+	}
+	
+	private static String lessOrEqual() {
+		return compareOp(isLessOrEqualUsed, "ble");
+	}
+	
+	private static String greater() {
+		return compareOp(isGreaterUsed, "bgt");
+	}
+	
+	private static String greaterOrEqual() {
+		return compareOp(isGreaterOrEqualUsed, "bge");
+	}
+	
+	private static String equal() {
+		return compareOp(isEqualUsed, "beq");
+	}
+	
+	private static String notEqual() {
+		return compareOp(isNotEqualUsed, "bne");
+	}
+	
+	private static String jTrue() {
+		isRetTrueFalseUsed = true;
+		return destGotoLabel("__jTrue") + System.lineSeparator();
+	}
+	
+	private static String jFalse() {
+		isRetTrueFalseUsed = true;
+		return destGotoLabel("__jFalse") + System.lineSeparator();
+	}
+	
+	private static String retTrueFalse() {
+		if(!isRetTrueFalseUsed)
+			return "";
+		return sourceGotoLabel("__jTrue") + System.lineSeparator()
+			 + "push 1" + System.lineSeparator()
+			 + "j ra" + System.lineSeparator()
+			 + sourceGotoLabel("__jFalse") + System.lineSeparator()
+			 + "push 0" + System.lineSeparator()
+			 + "j ra" + System.lineSeparator();
 	}
 	
 	private static String twoOpLogic(boolean isUsed, String operation) {
