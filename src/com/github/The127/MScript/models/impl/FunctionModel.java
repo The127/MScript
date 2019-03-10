@@ -16,6 +16,10 @@ import com.github.The127.MScript.models.IFunctionContext;
 import com.github.The127.MScript.models.IScriptContext;
 import com.github.The127.MScript.rt.MScriptRuntime;
 
+/**
+ * This class represents a function model in the MScript language.
+ * @author Julian Baehr
+ */
 public class FunctionModel extends AbstractModel implements IFunctionContext {
 
 	public static final int
