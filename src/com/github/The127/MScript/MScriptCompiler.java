@@ -13,7 +13,11 @@ import com.github.The127.MScript.visitors.ScriptVisitor;
 
 public class MScriptCompiler {
 	public static void main(String[] args) throws IOException {
-		var code = new String(Files.readAllBytes(Paths.get("res/test.ms")));
+		if(args.length < 1){
+			System.out.println("Missing file argument.");
+			System.exit(1);
+		}
+		var code = new String(Files.readAllBytes(Paths.get(args[0])));
 		var lexer = new MScriptLexer(new ANTLRInputStream(code));
 		var tokens = new CommonTokenStream(lexer);
 		var parser = new MScriptParser(tokens);
