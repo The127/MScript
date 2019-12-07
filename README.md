@@ -10,6 +10,51 @@ Stationeers uses an assembler based language (a variant of MIPS) to program ICs.
 This can make writing scripts extremely tedious and hard to understand/document/reuse.
 This project aims to fix this by introducing a higher level language that compiles to Stationeers Mips.
 
+How to build
+------------
+
+To build the program use eclipse or follow the following instructions (Linux).
+
+1. Clone project and cd into the folder
+```BASH
+git clone https://github.com/The127/MScript.git
+cd MScript
+```
+
+2. Compile the Java code using ANT
+```BASH
+ant build
+```
+This should have created a *bin* folder with the compiled *.class* files.
+
+3. Copy the ANTLR library into bthe bin folder, extract it and remove not needed files (ANTLR library is in the *lib* folder and may have another version number)
+```BASH
+cp lib/antlr-runtime-4.7.2.jar bin
+cd bin
+unzip antlr-runtime-4.7.2.jar
+rm -rf META-INF
+rm antlr-runtime-4.7.2.jar
+```
+
+4. Create the jar and copy it to the root folder
+```BASH
+jar cvfm MScript.jar ../MScript.mf *
+cd ..
+mv bin/MScript.jar .
+```
+
+Now you should have the MScript.jar in the projects root folder.
+
+How to use
+----------
+
+```BASH
+java -jar MScript.jar ./res/test.ms
+```
+or more generally
+```BASH
+java -jar MScript.jar <file>
+```
 
 The language (MScript)
 ----------------------
