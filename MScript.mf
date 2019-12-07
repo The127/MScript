@@ -1,0 +1,2 @@
+Manifest-Vertsion: 1.0
+Main-Class: com.github.The127.MScript.MScriptCompiler
