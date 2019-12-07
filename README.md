@@ -27,7 +27,7 @@ ant build
 ```
 This should have created a *bin* folder with the compiled *.class* files.
 
-3. Copy the ANTLR library into bthe bin folder, extract it and remove not needed files (ANTLR library is in the *lib* folder and may have another version number)
+3. Copy the ANTLR library into the bin folder, extract it and remove not needed files (ANTLR library is in the *lib* folder and may have another version number)
 ```BASH
 cp lib/antlr-runtime-4.7.2.jar bin
 cd bin
