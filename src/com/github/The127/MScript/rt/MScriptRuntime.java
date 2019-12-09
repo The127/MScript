@@ -12,7 +12,6 @@ import java.util.Set;
 
 import com.github.The127.MScript.FileContext;
 import com.github.The127.MScript.MScriptCompilationException;
-import com.github.The127.MScript.models.impl.FunctionModel;
 
 /**
  * This class provides a modular and dynamically generated runtime environment for MScript. 
@@ -30,6 +29,8 @@ public final class MScriptRuntime {
 	private static final String LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private static Set<String> labels = new HashSet<>();
 	
+	public static boolean isDebugEnabled = false;
+
 	private static boolean
 		isAddUsed = false,
 		isSubUsed = false,
@@ -97,6 +98,44 @@ public final class MScriptRuntime {
 		1, // sqrt
 		1, // exp
 	};
+
+	public static void debugOutput()
+	{
+		System.out.println("BEGIN DEBUG Runtime-Output");
+		if(isAddUsed) System.out.println("isAddUsed: " + isAddUsed);
+		if(isSubUsed) System.out.println("isSubUsed: " + isSubUsed);
+		if(isDivUsed) System.out.println("isDivUsed: " + isDivUsed);
+		if(isMulUsed) System.out.println("isMulUsed: " + isMulUsed);
+		if(isModUsed) System.out.println("isModUsed: " + isModUsed);
+		if(isNegateUsed) System.out.println("isNegateUsed: " + isNegateUsed);
+		if(isNotUsed) System.out.println("isNotUsed: " + isNotUsed);
+		if(isAndUsed) System.out.println("isAndUsed: " + isAndUsed);
+		if(isOrUsed) System.out.println("isOrUsed: " + isOrUsed);
+		if(isXorUsed) System.out.println("isXorUsed: " + isXorUsed);
+		if(isLessUsed) System.out.println("isLessUsed: " + isLessUsed);
+		if(isLessOrEqualUsed) System.out.println("isLessOrEqualUsed: " + isLessOrEqualUsed);
+		if(isGreaterUsed) System.out.println("isGreaterUsed: " + isGreaterUsed);
+		if(isGreaterOrEqualUsed) System.out.println("isGreaterOrEqualUsed: " + isGreaterOrEqualUsed);
+		if(isEqualUsed) System.out.println("isEqualUsed: " + isEqualUsed);
+		if(isNotEqualUsed) System.out.println("isNotEqualUsed: " + isNotEqualUsed);
+		if(isFloorUsed) System.out.println("isFloorUsed: " + isFloorUsed);
+		if(isCeilUsed) System.out.println("isCeilUsed: " + isCeilUsed);
+		if(isRoundUsed) System.out.println("isRoundUsed: " + isRoundUsed);
+		if(isBoolUsed) System.out.println("isBoolUsed: " + isBoolUsed);
+		if(isAbsUsed) System.out.println("isAbsUsed: " + isAbsUsed);
+		if(isLogUsed) System.out.println("isLogUsed: " + isLogUsed);
+		if(isMaxUsed) System.out.println("isMaxUsed: " + isMaxUsed);
+		if(isMinUsed) System.out.println("isMinUsed: " + isMinUsed);
+		if(isRandUsed) System.out.println("isRandUsed: " + isRandUsed);
+		if(isTruncUsed) System.out.println("isTruncUsed: " + isTruncUsed);
+		if(isSqrtUsed) System.out.println("isSqrtUsed: " + isSqrtUsed);
+		if(isExpUsed) System.out.println("isExpUsed: " + isExpUsed);
+		if(isFunctionCalled) System.out.println("isFunctionCalled: " + isFunctionCalled);
+		if(isConditionEvaluated) System.out.println("isConditionEvaluated: " + isConditionEvaluated);
+		if(isRetUsed) System.out.println("isRetUsed: " + isRetUsed);
+		if(isRetTrueFalseUsed) System.out.println("isRetTrueFalseUsed: " + isRetTrueFalseUsed);
+		System.out.println("END DEBUG Runtime-Output");
+	}
 	
 	/**
 	 * @param name The name of the internal runtime function.
@@ -124,6 +163,8 @@ public final class MScriptRuntime {
 	 * @return The runtime for the script.
 	 */
 	public static String createRuntime(int registersUsed, int maxParams) {
+		if(isDebugEnabled)
+			debugOutput();
 		var sb = new StringBuilder();
 		
 		sb.append(createPushPopRegisters(registersUsed, maxParams));
