@@ -101,6 +101,8 @@ public final class MScriptRuntime {
 
 	public static void debugOutput()
 	{
+		if(!isDebugEnabled) return;
+
 		System.out.println("BEGIN DEBUG Runtime-Output");
 		if(isAddUsed) System.out.println("isAddUsed: " + isAddUsed);
 		if(isSubUsed) System.out.println("isSubUsed: " + isSubUsed);
@@ -163,8 +165,6 @@ public final class MScriptRuntime {
 	 * @return The runtime for the script.
 	 */
 	public static String createRuntime(int registersUsed, int maxParams) {
-		if(isDebugEnabled)
-			debugOutput();
 		var sb = new StringBuilder();
 		
 		sb.append(createPushPopRegisters(registersUsed, maxParams));
@@ -295,11 +295,13 @@ public final class MScriptRuntime {
 	}
 	
 	private static String jTrue() {
+		if(isDebugEnabled && !isRetTrueFalseUsed) System.out.println("Runtime: enabling 'return true'.");
 		isRetTrueFalseUsed = true;
 		return destGotoLabel("__jTrue") + System.lineSeparator();
 	}
 	
 	private static String jFalse() {
+		if(isDebugEnabled && !isRetTrueFalseUsed) System.out.println("Runtime: enabling 'return false'.");
 		isRetTrueFalseUsed = true;
 		return destGotoLabel("__jFalse") + System.lineSeparator();
 	}
@@ -431,6 +433,7 @@ public final class MScriptRuntime {
 	}
 	
 	private static String jRet() {
+		if(isDebugEnabled && !isRetUsed) System.out.println("Runtime: enabling 'return'.");
 		isRetUsed = true;
 		return "j " + destGotoLabel("__ret") + System.lineSeparator();
 	}
@@ -480,6 +483,7 @@ public final class MScriptRuntime {
 	 * @return a destination for the function.
 	 */
 	public static String destFunctionLabel(String name) {
+		if(isDebugEnabled && !isFunctionCalled) System.out.println("Runtime: enabling 'function call'.");
 		isFunctionCalled = true;
 		return destLabel("function", name);
 	}
@@ -492,72 +496,95 @@ public final class MScriptRuntime {
 	public static String destGotoLabel(String name) {
 		switch(name) {
 		case "__and":
+			if(isDebugEnabled && !isAndUsed) System.out.println("Runtime: enabling 'and'-operator.");
 			isAndUsed = true;
 			break;
 		case "__or":
+			if(isDebugEnabled && !isOrUsed) System.out.println("Runtime: enabling 'or'-operator.");
 			isOrUsed = true;
 			break;
 		case "__xor":
+		if(isDebugEnabled && !isXorUsed) System.out.println("Runtime: enabling 'xor'-operator.");
 			isXorUsed = true;
 			break;
 		case "__condition":
+			if(isDebugEnabled && !isConditionEvaluated) System.out.println("Runtime: enabling condition evaluation.");
 			isConditionEvaluated = true;
 			break;
 		case "__floor":
+			if(isDebugEnabled && !isFloorUsed) System.out.println("Runtime: enabling 'floor'-method.");
 			isFloorUsed = true;
 			break;
 		case "__ceil":
+			if(isDebugEnabled && !isCeilUsed) System.out.println("Runtime: enabling 'ceil'-method.");
 			isCeilUsed = true;
 			break;
 		case "__round":
+			if(isDebugEnabled && !isRoundUsed) System.out.println("Runtime: enabling 'round'-method.");
 			isRoundUsed = true;
 			break;
 		case "__bool":
+			if(isDebugEnabled && !isBoolUsed) System.out.println("Runtime: enabling 'bool'-method.");
 			isBoolUsed = true;
 			break;
 		case "__abs":
+			if(isDebugEnabled && !isAbsUsed) System.out.println("Runtime: enabling 'abs'-method.");
 			isAbsUsed = true;
 			break;
 		case "__log":
+			if(isDebugEnabled && !isLogUsed) System.out.println("Runtime: enabling 'log'-method.");
 			isLogUsed = true;
 			break;
 		case "__max":
+			if(isDebugEnabled && !isMaxUsed) System.out.println("Runtime: enabling 'max'-method.");
 			isMaxUsed = true;
 			break;
 		case "__min":
+			if(isDebugEnabled && !isMinUsed) System.out.println("Runtime: enabling 'min'-method.");
 			isMinUsed = true;
 			break;
 		case "__rand":
+			if(isDebugEnabled && !isRandUsed) System.out.println("Runtime: enabling 'rand'-method.");
 			isRandUsed = true;
 			break;
 		case "__trunc":
+			if(isDebugEnabled && !isTruncUsed) System.out.println("Runtime: enabling 'trunc'-method.");
 			isTruncUsed = true;
 			break;
 		case "__sqrt":
+			if(isDebugEnabled && !isSqrtUsed) System.out.println("Runtime: enabling 'sqrt'-method.");
 			isSqrtUsed = true;
 			break;
 		case "__exp":
+			if(isDebugEnabled && !isExpUsed) System.out.println("Runtime: enabling 'exp'-method.");
 			isExpUsed = true;
 			break;
 		case "__add":
+			if(isDebugEnabled && !isAddUsed) System.out.println("Runtime: enabling 'addition'.");			
 			isAddUsed = true;
 			break;
 		case "__sub":
+			if(isDebugEnabled && !isSubUsed) System.out.println("Runtime: enabling 'subtraction'.");
 			isSubUsed = true;
 			break;
 		case "__mul":
+			if(isDebugEnabled && !isMulUsed) System.out.println("Runtime: enabling 'multiplication'.");
 			isMulUsed = true;
 			break;
 		case "__div":
+			if(isDebugEnabled && !isDivUsed) System.out.println("Runtime: enabling 'division'.");
 			isDivUsed = true;
 			break;
 		case "__mod":
+			if(isDebugEnabled && !isModUsed) System.out.println("Runtime: enabling 'modulo'.");
 			isModUsed = true;
 			break;
 		case "__not":
+			if(isDebugEnabled && !isNotUsed) System.out.println("Runtime: enabling 'not'-operator.");
 			isNotUsed = true;
 			break;
 		case "__negate":
+			if(isDebugEnabled && !isNegateUsed) System.out.println("Runtime: enabling 'negation'.");
 			isNegateUsed = true;
 			break;
 		}

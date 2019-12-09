@@ -31,7 +31,11 @@ public class MScriptCompiler {
 		var visitor = new ScriptVisitor();
 		var model = visitor.visitScript(parser.script());
 		var pseudo = model.doCompile();
+		
+		MScriptRuntime.debugOutput();
+
 		var compiled = new LabelResolver().resolveLabels(pseudo);
+
 		System.out.println(compiled);
 	}
 }
