@@ -285,7 +285,6 @@ public final class MScriptRuntime {
 	}
 	
 	private static String lessOrEqual() {
-		System.out.println("##########");
 		return compareOp(isLessOrEqualUsed, "ble", "lessOrEqual");
 	}
 	
@@ -462,7 +461,8 @@ public final class MScriptRuntime {
 	private static String condition() {
 		if(!isConditionEvaluated)
 			return "";
-		return "pop r12" + System.lineSeparator()
+		return sourceGotoLabel("__condition") + System.lineSeparator()
+			+ "pop r12" + System.lineSeparator()
 			+ "round r12 r12" + System.lineSeparator();
 	}
 	
