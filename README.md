@@ -15,33 +15,24 @@ How to build
 
 To build the program use eclipse or follow the following instructions (Linux).
 
+
 1. Clone project and cd into the folder
 ```BASH
 git clone https://github.com/The127/MScript.git
 cd MScript
 ```
 
-2. Compile the Java code using ANT
+2. Run the build script **in the root folder of the project**:
 ```BASH
-ant build
-```
-This should have created a *bin* folder with the compiled *.class* files.
-
-3. Copy the ANTLR library into the bin folder, extract it and remove not needed files (ANTLR library is in the *lib* folder and may have another version number)
-```BASH
-cp lib/antlr-runtime-4.7.2.jar bin
-cd bin
-unzip antlr-runtime-4.7.2.jar
-rm -rf META-INF
-rm antlr-runtime-4.7.2.jar
+./build.sh
 ```
 
-4. Create the jar and copy it to the root folder
-```BASH
-jar cvfm MScript.jar ../MScript.mf *
-cd ..
-mv bin/MScript.jar .
-```
+This will do the following: 
+
+- Compile the Java code using ANT
+- Copy the ANTLR library and license informations into the bin folder, extract it and remove not needed files (ANTLR library is in the *lib* folder and may have another version number)
+- Create the jar and copy it to the root folder
+
 
 Now you should have the MScript.jar in the projects root folder.
 
