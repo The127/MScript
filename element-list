@@ -1,0 +1,7 @@
+module:mscript
+com.github.The127.MScript
+com.github.The127.MScript.antlr
+com.github.The127.MScript.models
+com.github.The127.MScript.models.impl
+com.github.The127.MScript.rt
+com.github.The127.MScript.visitors
