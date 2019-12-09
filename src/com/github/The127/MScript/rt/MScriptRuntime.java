@@ -137,6 +137,16 @@ public final class MScriptRuntime {
 		if(isRetUsed) System.out.println("isRetUsed: " + isRetUsed);
 		if(isRetTrueFalseUsed) System.out.println("isRetTrueFalseUsed: " + isRetTrueFalseUsed);
 		System.out.println("END DEBUG Runtime-Output");
+
+		System.out.println();
+		
+		System.out.println("BEGIN DEBUG Runtime-Code");
+		var resetDebug = isDebugEnabled;
+		isDebugEnabled = false;
+		System.out.println(MScriptRuntime.createRuntime(0, 0));
+		isDebugEnabled = resetDebug;
+		System.out.println("END DEBUG Runtime-Code");
+		System.out.println();
 	}
 	
 	/**
@@ -260,10 +270,10 @@ public final class MScriptRuntime {
 			+ jRet();
 	}
 	
-	private static String compareOp(boolean isUsed, String operation) {
+	private static String compareOp(boolean isUsed, String operation, String opName) {
 		if(!isUsed)
 			return "";
-		return sourceGotoLabel("__" + operation) + System.lineSeparator() 
+		return sourceGotoLabel("__" + opName) + System.lineSeparator() 
 			 + "pop r13" + System.lineSeparator()
 			 + "pop r12" + System.lineSeparator()
 			 + operation + " r12 r13 " + jTrue()
@@ -271,27 +281,28 @@ public final class MScriptRuntime {
 	}
 	
 	private static String less() {
-		return compareOp(isLessUsed, "blt");
+		return compareOp(isLessUsed, "blt", "less");
 	}
 	
 	private static String lessOrEqual() {
-		return compareOp(isLessOrEqualUsed, "ble");
+		System.out.println("##########");
+		return compareOp(isLessOrEqualUsed, "ble", "lessOrEqual");
 	}
 	
 	private static String greater() {
-		return compareOp(isGreaterUsed, "bgt");
+		return compareOp(isGreaterUsed, "bgt", "greater");
 	}
 	
 	private static String greaterOrEqual() {
-		return compareOp(isGreaterOrEqualUsed, "bge");
+		return compareOp(isGreaterOrEqualUsed, "bge", "greaterOrEqual");
 	}
 	
 	private static String equal() {
-		return compareOp(isEqualUsed, "beq");
+		return compareOp(isEqualUsed, "beq", "equal");
 	}
 	
 	private static String notEqual() {
-		return compareOp(isNotEqualUsed, "bne");
+		return compareOp(isNotEqualUsed, "bne", "notEqual");
 	}
 	
 	private static String jTrue() {
@@ -487,13 +498,14 @@ public final class MScriptRuntime {
 		isFunctionCalled = true;
 		return destLabel("function", name);
 	}
-	
+
 	/**
 	 * Creates a destination label for a goto label.
 	 * @param name The goto label name.
 	 * @return a destinatino label for the goto label.
 	 */
 	public static String destGotoLabel(String name) {
+		if(isDebugEnabled) System.out.println("destGotoLabel: " + name);
 		switch(name) {
 		case "__and":
 			if(isDebugEnabled && !isAndUsed) System.out.println("Runtime: enabling 'and'-operator.");
@@ -586,6 +598,30 @@ public final class MScriptRuntime {
 		case "__negate":
 			if(isDebugEnabled && !isNegateUsed) System.out.println("Runtime: enabling 'negation'.");
 			isNegateUsed = true;
+			break;
+		case "__less":
+			if(isDebugEnabled && !isLessUsed) System.out.println("Runtime: enabling 'less'-comparison.");
+			isLessUsed = true;
+			break;
+		case "__lessOrEqual":
+			if(isDebugEnabled && !isLessOrEqualUsed) System.out.println("Runtime: enabling 'isLessOrEqual'-comparison.");
+			isLessOrEqualUsed = true;
+			break;
+		case "__greater":
+			if(isDebugEnabled && !isGreaterUsed) System.out.println("Runtime: enabling 'isGreater'-comparison.");
+			isGreaterUsed = true;
+			break;
+		case "__greaterOrEqual":
+			if(isDebugEnabled && !isGreaterOrEqualUsed) System.out.println("Runtime: enabling 'isGreaterOrEqual'-comparison.");
+			isGreaterOrEqualUsed = true;
+			break;
+		case "__equal":
+			if(isDebugEnabled && !isEqualUsed) System.out.println("Runtime: enabling 'isEqual'-comparison.");
+			isEqualUsed = true;
+			break;
+		case "__notEqual":
+			if(isDebugEnabled && !isNotEqualUsed) System.out.println("Runtime: enabling 'isNotEqual'-comparison.");
+			isNotEqualUsed = true;
 			break;
 		}
 		return destLabel("goto", name);
