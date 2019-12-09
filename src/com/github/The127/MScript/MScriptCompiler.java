@@ -36,6 +36,7 @@ public class MScriptCompiler {
 
 		var compiled = new LabelResolver().resolveLabels(pseudo);
 
+		if(MScriptRuntime.isDebugEnabled)System.out.println("Generated code: ");
 		System.out.println(compiled);
 	}
 }
