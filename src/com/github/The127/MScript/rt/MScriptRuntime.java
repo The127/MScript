@@ -210,7 +210,6 @@ public final class MScriptRuntime {
 		sb.append(ret());
 		sb.append(condition());
 
-		// optimize last runtime feature to not use "j __ret"
 		return sb.toString();
 	}
 

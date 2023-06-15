@@ -1,47 +1,46 @@
-push ra
 l r4 d0 Temperature
 s db Setting r4
-jal 50
+jal 49
 push r4
 push 293.15
-jal 47
-jal 21
-jal 57
+jal 46
+jal 20
+jal 56
 pop r5
 s d1 Setting r5
-jal 50
+jal 49
 push r4
 push 303.15
-jal 47
-jal 34
-jal 57
+jal 46
+jal 33
+jal 56
 pop r5
 s d2 Setting r5
 yield
-j 1
+j 0
 push ra
 push r0
 push r1
-jal 65
-jal 79
-beq r12 0 31
+jal 64
+jal 78
+beq r12 0 30
 pop r14
 push 1
 j r14
-j 34
+j 33
 pop r14
 push 0
 j r14
 push ra
 push r0
 push r1
-jal 69
-jal 79
-beq r12 0 44
+jal 68
+jal 78
+beq r12 0 43
 pop r14
 push 1
 j r14
-j 47
+j 46
 pop r14
 push 0
 j r14
@@ -62,15 +61,15 @@ pop r3
 pop r2
 pop r1
 pop r0
-j 77
+j 76
 pop r13
 pop r12
-blt r12 r13 73
-j 75
+blt r12 r13 72
+j 74
 pop r13
 pop r12
-bgt r12 r13 73
-j 75
+bgt r12 r13 72
+j 74
 push 1
 j ra
 push 0
@@ -79,4 +78,4 @@ push r12
 j ra
 pop r12
 round r12 r12
-j 77
+j 76

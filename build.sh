@@ -1,4 +1,3 @@
-set -e
 ant clean
 ant build
 cp ANTLR_LICENSE bin
