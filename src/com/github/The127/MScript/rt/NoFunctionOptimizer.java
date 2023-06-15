@@ -1,12 +1,12 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript.rt;
 
 /**
  * This class implements the default function optimization which is no optimization. 
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public class NoFunctionOptimizer implements IFunctionOptimizer {
 

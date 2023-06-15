@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript.models.impl;
 
@@ -16,7 +16,7 @@ import com.github.The127.MScript.rt.MScriptRuntime;
 
 /**
  * This class represents a precedence 2 operator expression in the MScript language.
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public class Precedence2Model extends AbstractModel {
 	

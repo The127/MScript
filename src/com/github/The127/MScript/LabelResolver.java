@@ -8,7 +8,7 @@ public class LabelResolver {
 
 	private Map<String, Integer> sourceLabels = new HashMap<>();
 	
-	public String resolveLabels(String pseudoCompiledCode) {
+	public String resolveLabels(String pseudoCompiledCode, boolean isDebug) {
 		pseudoCompiledCode = pseudoCompiledCode.replaceAll("(?m)^[ \t]*\r?\n", "");
 		var code = new LinkedList<String>();
 		var lines = pseudoCompiledCode.split(System.lineSeparator());
@@ -17,6 +17,8 @@ public class LabelResolver {
 			if(line.startsWith("{source::")) {
 				// remember line of label
 				sourceLabels.put(line.trim(), lineIndex);
+				if(isDebug)
+				code.add("// " + line);
 			}else {
 				code.add(line);
 				lineIndex++;

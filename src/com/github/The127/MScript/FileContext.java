@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript;
 
@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * This class represents the file context of a model.
  * This can be used to generate helpfull error messages or debugging instructions.
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public final class FileContext {
 	

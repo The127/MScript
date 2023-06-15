@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript.models.impl;
 
@@ -10,7 +10,7 @@ import com.github.The127.MScript.models.ICompilableModel;
 
 /**
  * This class represents the base class for all models.
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public abstract class AbstractModel implements ICompilableModel {
 

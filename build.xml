@@ -3,23 +3,23 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="MScrtip">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="MScript">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="10"/>
     <property name="source" value="10"/>
-    <path id="MScrtip.classpath">
+    <path id="MScript.classpath">
         <pathelement location="bin"/>
     </path>
-    <path id="MScrtip.modulepath">
+    <path id="MScript.modulepath">
         <pathelement location="lib/antlr-runtime-4.7.2.jar"/>
 	</path>
     <path id="run.MScriptRuntime.classpath">
-        <path refid="MScrtip.classpath"/>
+        <path refid="MScript.classpath"/>
         <pathelement location="lib/antlr-runtime-4.7.2.jar"/>
     </path>
     <path id="run.MScriptRuntime.modulepath">
-        <path refid="MScrtip.modulepath"/>
+        <path refid="MScript.modulepath"/>
         <pathelement location="lib/antlr-runtime-4.7.2.jar"/>
     </path>
     <target name="init">
@@ -40,8 +40,8 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="MScrtip.classpath"/>
-            <modulepath refid="MScrtip.modulepath"/>
+            <classpath refid="MScript.classpath"/>
+            <modulepath refid="MScript.modulepath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>

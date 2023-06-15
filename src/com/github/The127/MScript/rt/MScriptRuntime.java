@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript.rt;
 
@@ -15,7 +15,7 @@ import com.github.The127.MScript.MScriptCompilationException;
 
 /**
  * This class provides a modular and dynamically generated runtime environment for MScript. 
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public final class MScriptRuntime {
 	
@@ -211,8 +211,7 @@ public final class MScriptRuntime {
 		sb.append(condition());
 
 		// optimize last runtime feature to not use "j __ret"
-		return sb.toString()
-				.replace(jRet() + ret(), ret());
+		return sb.toString();
 	}
 
 	private static String createPushPopRegisters(int registersUsed, int maxParams) {
@@ -221,13 +220,13 @@ public final class MScriptRuntime {
 			return "";
 		
 		var sb = new StringBuilder();
-		
+
 		for(int i = maxParams-1; i >= 0; i--) {
 			sb.append(sourceGotoLabel("__pop_params_" + (i+1))).append(System.lineSeparator());
 			sb.append("pop r" + i).append(System.lineSeparator());
 		}
 		sb.append("j ra").append(System.lineSeparator());
-		
+
 		sb.append(sourceGotoLabel("__push_registers")).append(System.lineSeparator());
 		for(int i = 0; i < registersUsed; i++)
 			sb.append("push r" + i).append(System.lineSeparator());
@@ -463,7 +462,8 @@ public final class MScriptRuntime {
 			return "";
 		return sourceGotoLabel("__condition") + System.lineSeparator()
 			+ "pop r12" + System.lineSeparator()
-			+ "round r12 r12" + System.lineSeparator();
+			+ "round r12 r12" + System.lineSeparator()
+			+ jRet();
 	}
 	
 	/**

@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript.models;
 
@@ -8,7 +8,7 @@ import com.github.The127.MScript.FileContext;
 
 /**
  * This interface defines what compilation context is to be provided by the current compiled function.
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public interface IFunctionContext {
 	

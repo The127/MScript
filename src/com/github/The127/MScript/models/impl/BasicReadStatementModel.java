@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript.models.impl;
 
@@ -9,7 +9,7 @@ import com.github.The127.MScript.models.IScriptContext;
 
 /**
  * This class represents a basic read statement in the MScript language.
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public class BasicReadStatementModel extends ReadStatementModel {
 	

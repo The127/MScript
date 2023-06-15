@@ -1,12 +1,12 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript.rt;
 
 /**
  * This class implements a function optimization algorithm.
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public class FunctionOptimizer implements IFunctionOptimizer {
 

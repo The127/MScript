@@ -31,10 +31,10 @@ public class MScriptCompiler {
 		var visitor = new ScriptVisitor();
 		var model = visitor.visitScript(parser.script());
 		var pseudo = model.doCompile();
-		
+
 		MScriptRuntime.debugOutput();
 
-		var compiled = new LabelResolver().resolveLabels(pseudo);
+		var compiled = new LabelResolver().resolveLabels(pseudo, MScriptRuntime.isDebugEnabled);
 
 		if(MScriptRuntime.isDebugEnabled)System.out.println("Generated code: ");
 		System.out.println(compiled);

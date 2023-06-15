@@ -1,12 +1,12 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript.models;
 
 /**
  * This interface defines the compilation/model api.
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public interface ICompilableModel {
 

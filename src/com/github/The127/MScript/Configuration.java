@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript;
 
@@ -8,8 +8,8 @@ import com.github.The127.MScript.rt.IFunctionOptimizer;
 import com.github.The127.MScript.rt.NoFunctionOptimizer;
 
 /**
- * This class represents the configuration of the MScrtip compiler.
- * @author Julian Baehr
+ * This class represents the configuration of the MScript compiler.
+ * @author Karolin Kostial
  */
 public class Configuration {
 

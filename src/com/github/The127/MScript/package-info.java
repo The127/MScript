@@ -1,9 +1,9 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 /**
- * @author Julian Baehr
+ * @author Karolin Kostial
  *
  */
 package com.github.The127.MScript;

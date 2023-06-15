@@ -1,12 +1,12 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript;
 
 /**
  * This class represents a compilation error. 
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 @SuppressWarnings("serial")
 public class MScriptCompilationException extends RuntimeException {

@@ -1,6 +1,6 @@
 /**
  * MIT License
- * Copyright (c) 2019 Julian Baehr and David Brandt
+ * Copyright (c) 2019 Karolin Kostial and David Brandt
  */
 package com.github.The127.MScript.models.impl;
 
@@ -10,7 +10,7 @@ import com.github.The127.MScript.rt.MScriptRuntime;
 
 /**
  * This class represents an elif block in the MScript language.
- * @author Julian Baehr
+ * @author Karolin Kostial
  */
 public class ElifStatementModel extends AbstractModel {
 
