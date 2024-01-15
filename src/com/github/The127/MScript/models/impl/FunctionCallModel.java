@@ -45,7 +45,7 @@ public class FunctionCallModel extends ExpressionModel {
 				throw compilerError("False argument count for runtime function '" + name + "'. Got " + args.size() + ", expected " + MScriptRuntime.getParametersForRtFunction(name, getFileContext()) + ".");
 			for(var arg : args)
 				sb.append(arg.compile(ctx));
-			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__" + name));
+			sb.append("jal ").append(MScriptRuntime.destGotoLabel("__" + name)).append(System.lineSeparator());
 		}else {
 			// check if function exists (main excluded)
 			if(!ctx.doesFunctionExist(name))

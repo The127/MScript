@@ -18,7 +18,7 @@ public class LabelResolver {
 				// remember line of label
 				sourceLabels.put(line.trim(), lineIndex);
 				if(isDebug)
-				code.add("// " + line);
+					code.add("// " + line);
 			}else {
 				code.add(line);
 				lineIndex++;
